@@ -1,0 +1,104 @@
+[
+    {
+        "key": "Moonlight",
+        "value": {
+            "budget": 1500000,
+            "profit": 55652469,
+            "director": [{name: "Barry Jenkins", gender: "male", race: "black"
+                         }],
+            "writers":[{
+                
+            }],
+            "producers":[{
+                
+            }]
+        }
+    },
+    {
+        "key": "La La Land",
+        "value": {
+            "budget": 30000000,
+            "profit": 427188687,
+            "director": [{name: "Damien Chazelle", gender: "male", race: "white"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },
+    {
+        "key": "Lion",
+        "value": {
+            "budget": 12000000,
+            "profit": 126510642,
+            "director": [{name: "Garth Davis", gender: "male", race: "white"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },
+    {
+        "key": "Hidden Figures",
+        "value": {
+            "budget": 25000000,
+            "profit": 215918490,
+            "director": [{name: "Theodore Melfi", gender: "male", race: "white"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },
+    {
+        "key": "Manchester By the Sea",
+        "value": {
+            "budget": 8500000,
+            "profit": 62234018,
+            "director": [{name: "Kenneth Lonergan", gender: "male", race: "white"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },
+    {
+        "key": "Rogue One",
+        "value": {
+            "budget": 200000000,
+            "profit": 1054782310,
+            "director": [{name: "Gareth Edwards", gender: "male", race: "white"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },
+    {
+        "key": "Captain America: Civil War",
+        "value": {
+            "budget": 250000000,
+            "profit": 1153304495,
+            "director": [{name: "Anthony Russo", gender: "male", race: "white"}, {name: "Joe Russo", gender: "male", race: "white"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },{
+        "key": "Arrival",
+        "value": {
+            "budget": 47000000,
+            "profit": 193818134,
+            "director": [{name: "Denis Villeneuve", gender: "male", race: "white"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },{
+        "key": "Batman vs. Superman",
+        "value": {
+            "budget": 250000000,
+            "profit": 873260194,
+            "director": [{name: "Pablo Larrain", gender: "male", race: "hispanic"}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },{
+        "key": "Jackie",
+        "value": {
+            "budget": 9000000,
+            "profit": 24875508,
+            "director": [{}],
+            "writers":[{}],
+            "producers":[{}]
+        }
+    },
+]
