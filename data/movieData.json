@@ -4,14 +4,17 @@
         "value": {
             "budget": 1500000,
             "profit": 55652469,
-            "director": [{name: "Barry Jenkins", gender: "male", race: "black"
-                         }],
-            "writers":[{
-                
-            }],
-            "producers":[{
-                
-            }]
+            "director": [
+                {name: "Barry Jenkins", gender: "male", race: "black"}
+            ],
+            "writers":[
+                {name: "Barry Jenkins", gender: "male", race: "black"},
+            ],
+            "producers":[
+                {name: "Adele Romanski", gender: "female", race: "white"},
+                {name: "Jeremy Kleiner", gender: "male", race: "white"},
+                {name: "Dede Gardner", gender: "female", race: "white"}
+            ]
         }
     },
     {
@@ -20,8 +23,15 @@
             "budget": 30000000,
             "profit": 427188687,
             "director": [{name: "Damien Chazelle", gender: "male", race: "white"}],
-            "writers":[{}],
-            "producers":[{}]
+            "writers":[{
+                 name: "Damien Chazelle", gender: "male", race: "white"     
+            }],
+            "producers":[
+                {name: "Jordan Horowitz", gender: "male", race: "white"},
+                {name: "Fred Berger", gender: "male", race: "white"},
+                {name: "Marc Platt", gender: "male", race: "white"},
+                {name: "Gary Gilbert", gender: "male", race: "white"}
+                 ]
         }
     },
     {
@@ -30,8 +40,12 @@
             "budget": 12000000,
             "profit": 126510642,
             "director": [{name: "Garth Davis", gender: "male", race: "white"}],
-            "writers":[{}],
-            "producers":[{}]
+            "writers":[{name: "Luke Davies", gender: "male", race: "white"}],
+            "producers":[
+                {name: "Iain Canning", gender: "male", race: "white"},
+                {name: "Angie Fielder", gender: "female", race: "white"},
+                {name: "Emile Sherman", gender: "male", race: "white"}
+                        ]
         }
     },
     {
@@ -40,8 +54,16 @@
             "budget": 25000000,
             "profit": 215918490,
             "director": [{name: "Theodore Melfi", gender: "male", race: "white"}],
-            "writers":[{}],
-            "producers":[{}]
+            "writers":[
+                {name: "Theodore Melfi", gender: "male", race: "white"},
+                {name: "Allison Schroeder", gender: "female", race: "white"}],
+            "producers":[
+                {name: "Pharrell Williams", gender: "male", race: "black"},
+                {name: "Theodore Melfi", gender: "male", race: "white"},
+                {name: "Donna Gigliotti", gender: "female", race: "white"},
+                {name: "Peter Chernin", gender: "male", race: "white"},
+                {name: "Jenno Topping", gender: "female", race: "white"}
+                        ]
         }
     },
     {
@@ -50,8 +72,14 @@
             "budget": 8500000,
             "profit": 62234018,
             "director": [{name: "Kenneth Lonergan", gender: "male", race: "white"}],
-            "writers":[{}],
-            "producers":[{}]
+            "writers":[{name: "Kenneth Logeran", gender: "male", race: "white"}],
+            "producers":[
+                {name: "Matt Damon", gender: "male", race: "white"},
+                {name: "Kimberly Steward", gender: "female", race: "black"},
+                {name: "Kevin Walsh", gender: "male", race: "white"},
+                {name: "Chris Moore", gender: "male", race: "white"},
+                {name: "Lauren Beck", gender: "female", race: "white"}
+                ]
         }
     },
     {
@@ -60,8 +88,13 @@
             "budget": 200000000,
             "profit": 1054782310,
             "director": [{name: "Gareth Edwards", gender: "male", race: "white"}],
-            "writers":[{}],
-            "producers":[{}]
+            "writers":[{name: "Chris Weitz", gender: "male", race: "white"}, {name: "Toby Gilroy", gender: "male", race: "white"}],
+            "producers":[
+                {name: "Simon Emanuel", gender: "male", race: "white"},
+                {name: "Kathleen Kennedy", gender: "female", race: "white"},
+                {name: "Allison Shearmur", gender: "female", race: "white"}
+                
+            ]
         }
     },
     {
@@ -70,8 +103,10 @@
             "budget": 250000000,
             "profit": 1153304495,
             "director": [{name: "Anthony Russo", gender: "male", race: "white"}, {name: "Joe Russo", gender: "male", race: "white"}],
-            "writers":[{}],
-            "producers":[{}]
+            "writers":[{name: "Christopher Markus", gender: "male", race: "white"}, {name: "Stephen McKeely", gender: "male", race: "white"}],
+            "producers":[
+                {name: "Kevin Feige", gender: "male", race: "white"}
+            ]
         }
     },{
         "key": "Arrival",
@@ -79,26 +114,40 @@
             "budget": 47000000,
             "profit": 193818134,
             "director": [{name: "Denis Villeneuve", gender: "male", race: "white"}],
-            "writers":[{}],
-            "producers":[{}]
+            "writers":[{name: "Eric Heisserer", gender: "male", race: "white"}],
+            "producers":[
+                {name: "Shawn Levy", gender: "male", race: "white"},
+                {name: "Dan Levine", gender: "male", race: "white"},
+                {name: "Aaron Ryder", gender: "male", race: "white"},
+                {name: "David Linde", gender: "male", race: "white"}
+            ]
         }
     },{
         "key": "Batman vs. Superman",
         "value": {
             "budget": 250000000,
             "profit": 873260194,
-            "director": [{name: "Pablo Larrain", gender: "male", race: "hispanic"}],
-            "writers":[{}],
-            "producers":[{}]
+            "director": [{name: "Zack Snyder", gender: "male", race: "white"}],
+            "writers":[{name: "Chris Terrio", gender: "male", race: "white"}, {name: "David S. Goyer", gender: "male", race: "white"}],
+            "producers":[
+                {name: "Charles Roven", gender: "male", race: "white"},
+            {name: "Deborah Snyder", gender: "female", race: "white"}
+            ]
         }
     },{
         "key": "Jackie",
         "value": {
             "budget": 9000000,
             "profit": 24875508,
-            "director": [{}],
-            "writers":[{}],
-            "producers":[{}]
+            "director": [{name: "Pablo Larrain", gender: "male", race: "hispanic"}],
+            "writers":[{name: "Noah Oppenheim", gender: "male", race: "white"}],
+            "producers":[
+                {name: "Juan de Dios Larrain", gender: "male", race: "hispanic"},
+                {name: "Darren Aronofsky", gender: "male", race: "white"},
+                {name: "Mickey Liddell", gender: "male", race: "white"},
+                {name: "Scott Franklin", gender: "male", race: "white"},
+                {name: "Ari Handel", gender: "male", race: "white"}
+                ]
         }
     },
 ]
