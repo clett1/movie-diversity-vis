@@ -3,7 +3,7 @@ var characterData;
 var movieData;
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960,
+    width = 1600,
     height = 500;
 
 //xScale setup
@@ -123,7 +123,12 @@ function createChart() {
             return 3.5;
         })
         .attr('fill', function(d) {
-            return "black";
+            //eventually this will need to go into filters
+            if(d.GENDER == "male") {
+                return "blue";
+            } else if (d.GENDER == "female") {
+                return "red";
+            }
         })
         .on('mouseover', function(d) {
               console.log(d.NAME + " - "+ d.MOVIE);     
