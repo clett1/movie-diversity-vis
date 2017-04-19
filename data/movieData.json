@@ -4,6 +4,7 @@
         "value": {
             "budget": 1500000,
             "profit": 55652469,
+            "roi": 3610,
             "director": [
                 {name: "Barry Jenkins", gender: "male", race: "black"}
             ],
@@ -22,6 +23,7 @@
         "value": {
             "budget": 30000000,
             "profit": 427188687,
+            "roi": 1324,
             "director": [{name: "Damien Chazelle", gender: "male", race: "white"}],
             "writers":[{
                  name: "Damien Chazelle", gender: "male", race: "white"     
@@ -39,6 +41,7 @@
         "value": {
             "budget": 12000000,
             "profit": 126510642,
+            "roi": 954,
             "director": [{name: "Garth Davis", gender: "male", race: "white"}],
             "writers":[{name: "Luke Davies", gender: "male", race: "white"}],
             "producers":[
@@ -53,6 +56,7 @@
         "value": {
             "budget": 25000000,
             "profit": 215918490,
+            "roi": 764,
             "director": [{name: "Theodore Melfi", gender: "male", race: "white"}],
             "writers":[
                 {name: "Theodore Melfi", gender: "male", race: "white"},
@@ -71,6 +75,7 @@
         "value": {
             "budget": 8500000,
             "profit": 62234018,
+            "roi": 632,
             "director": [{name: "Kenneth Lonergan", gender: "male", race: "white"}],
             "writers":[{name: "Kenneth Logeran", gender: "male", race: "white"}],
             "producers":[
@@ -87,6 +92,7 @@
         "value": {
             "budget": 200000000,
             "profit": 1054782310,
+            "roi": 427,
             "director": [{name: "Gareth Edwards", gender: "male", race: "white"}],
             "writers":[{name: "Chris Weitz", gender: "male", race: "white"}, {name: "Toby Gilroy", gender: "male", race: "white"}],
             "producers":[
@@ -102,6 +108,7 @@
         "value": {
             "budget": 250000000,
             "profit": 1153304495,
+            "roi": 361,
             "director": [{name: "Anthony Russo", gender: "male", race: "white"}, {name: "Joe Russo", gender: "male", race: "white"}],
             "writers":[{name: "Christopher Markus", gender: "male", race: "white"}, {name: "Stephen McKeely", gender: "male", race: "white"}],
             "producers":[
@@ -113,6 +120,7 @@
         "value": {
             "budget": 47000000,
             "profit": 193818134,
+            "roi": 312,
             "director": [{name: "Denis Villeneuve", gender: "male", race: "white"}],
             "writers":[{name: "Eric Heisserer", gender: "male", race: "white"}],
             "producers":[
@@ -127,6 +135,7 @@
         "value": {
             "budget": 250000000,
             "profit": 873260194,
+            "roi": 249,
             "director": [{name: "Zack Snyder", gender: "male", race: "white"}],
             "writers":[{name: "Chris Terrio", gender: "male", race: "white"}, {name: "David S. Goyer", gender: "male", race: "white"}],
             "producers":[
@@ -139,6 +148,7 @@
         "value": {
             "budget": 9000000,
             "profit": 24875508,
+            "roi": 176, 
             "director": [{name: "Pablo Larrain", gender: "male", race: "hispanic"}],
             "writers":[{name: "Noah Oppenheim", gender: "male", race: "white"}],
             "producers":[
@@ -149,5 +159,5 @@
                 {name: "Ari Handel", gender: "male", race: "white"}
                 ]
         }
-    },
+    }
 ]
