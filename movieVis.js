@@ -124,9 +124,16 @@ function createChart() {
         })
         .attr('fill', function(d) {
             return "black";
+        })
+        .on('mouseover', function(d) {
+              console.log(d.NAME + " - "+ d.MOVIE);     
+        })
+        .on('mouseout', function(d) {
         });
     
 }
+
+
 
 /*      
   // draw legend
