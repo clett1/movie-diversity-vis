@@ -19,6 +19,13 @@ d3.json('data/movieData.json', function(error, data) {
     //createMovieData();
 })
 
+//function to place tooltip at mouse coordinates
+function placeDiv(x, y){
+    var tooltip = document.getElementById("tooltip");
+    //set x and y
+    tooltip.style.left = x+'px';
+    tooltip.style.top = y+'px';
+} 
 
 //Read in data from CharacterData
 d3.csv("data/CharacterData.csv", function (data) {
@@ -129,10 +136,34 @@ function createChart() {
         })
         .on('mouseover', function(d) {
             //Will need to display the hover information
-              console.log(d.NAME + " - "+ d.MOVIE);     
+              console.log(d.NAME + " - "+ d.MOVIE);
+            
+            //GET COORDINATES of mouse
+            var coordinates = [0,0];
+            coordinates = d3.mouse(this);
+            var x = coordinates[0];
+            var y = coordinates[1];
+               
+            //SET VALUES in tooltip from d
+            document.querySelector('#tooltip .char').innerText = d.NAME; //title
+            document.querySelector('#tooltip .movie').innerText = d.MOVIE; //movie
+            document.querySelector('#tooltip .total-words').innerText = "Words Spoken: " + d.CHARACTER_WORDS; //words spoken
+            var percent = Math.round((d.CHARACTER_WORDS/d.TOTAL_MOVIE_WORDS)*100);
+            document.querySelector('#tooltip .percent').innerText = "Percent of Total Movie Words: " + percent + "%"; //percent words spoken
+            document.querySelector('#tooltip .gender').innerText = d.GENDER; //gender
+            document.querySelector('#tooltip .race').innerText = d.RACE;
+            document.querySelector('#tooltip .orientation').innerText = d.SEXUAL_ORIENTATION;
+            
+            //SHOW TOOL TIP
+            placeDiv(x, y);
+            
+            
         })
         .on('mouseout', function(d) {
             //Will need to clear the hover information
+            //hide tool tip
+//            var tooltip = document.getElementById("tooltip");
+//            tooltip.style.display = 'none';
         });
     
 }
