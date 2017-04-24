@@ -14,34 +14,36 @@ var xScale = d3.scaleLinear()
 var yScale = d3.scaleBand()
                 .range([margin.top, height - margin.bottom]);
 
-d3.json('data/movieData.json', function(error, data) {
-    movieData = data;
-    //createMovieData();
-})
 
+d3.queue()
+  .defer(d3.csv, "/data/CharacterData.csv")
+  .defer(d3.json, "/data/movieData.json")
+  .await(analyze);
 
-//Read in data from CharacterData
-d3.csv("data/CharacterData.csv", function (data) {
+function analyze(error, character, movie) {
+    if(error) { 
+        console.log(error); 
+    }
     
-    data.forEach(function (d) {
+    character.forEach(function (d) {
         // Convert numeric values to 'numbers'
         d.CHARACTER_WORDS = +d.CHARACTER_WORDS;
         d.TOTAL_MOVIE_WORDS = +d.TOTAL_MOVIE_WORDS;
         d.wordsPercent = (+d.CHARACTER_WORDS / +d.TOTAL_MOVIE_WORDS) * 100;
     });
 
-    // Store csv data in a global variable
-    characterData = data;
+    characterData = character;
+    movieData = movie; 
     
     createChart();
-});
+   
+}
 
 /*
 *   This is where the main chart is created
 */
 function createChart() {
 
-    
     var wordCountPercent = characterData.map(function(d) {
         return (d.CHARACTER_WORDS / d.TOTAL_MOVIE_WORDS) * 100;
     });
@@ -113,7 +115,6 @@ function createChart() {
             return xScale(d.wordsPercent);
         })
         .attr('cy', function(d) {
-            console.log(d.TOTAL_MOVIE_WORDS);
             return yScale(d.TOTAL_MOVIE_WORDS);
         })
         .attr('r', function(d) {

@@ -4,7 +4,7 @@ Visualization in HCI Final Project
 Things left to be done:
 
 - Correct Movie JSON Data read in
-
+jij 
 - ROI Bars
     - These will need their own scale 
     - The SVG size will need to change too so that the bars can fit (or just made the margin.left size a bit bigger)
