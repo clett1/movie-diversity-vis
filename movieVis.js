@@ -2,9 +2,9 @@
 var characterData;
 var movieData;
 
-var margin = {top: 20, right: 60, bottom: 30, left: 40},
+var margin = {top: 20, right: 200, bottom: 30, left: 40},
     width = 1200,
-    height = 500;
+    height = 700;
 
 //xScale setup
 var xScale = d3.scaleLinear()
@@ -44,18 +44,33 @@ function analyze(error, character, movie) {
 */
 function createChart() {
 
+    //creates array wordCountPercent to set x scale domain
     var wordCountPercent = characterData.map(function(d) {
         return (d.CHARACTER_WORDS / d.TOTAL_MOVIE_WORDS) * 100;
     });
+  
     
-    var totalWords = characterData.map(function(d) {
-        return d.TOTAL_MOVIE_WORDS;
-    })
+    //create array movieROI to set y scale domain
+    var movieROI = movieData.map(function(d) {
+        return d.value["roi"];
+    });
+    
+    //assign ROI values to character data array
+    characterData.forEach(function (d) {
+        
+        movieData.forEach(function(m) {
+            if (m.key == d.MOVIE) {
+
+                d.roi = m.value["roi"];
+            }
+         })
+    });
     
     //x scale axis (word spoken percentage)
     xScale.domain([0, d3.max(wordCountPercent)]); 
+    
     //y scale (total words for now until JSON is complete)
-    yScale.domain(totalWords);
+    yScale.domain(movieROI);
     
     //X axis
     var xAxis = d3.axisBottom();
@@ -102,6 +117,32 @@ function createChart() {
     *   We may need some filters for this for color
     *
     */
+    
+    var backBars = svg.selectAll("rect").data(movieROI);
+    
+    backBars = backBars.enter()
+                .append('rect')
+                .merge(backBars);
+    
+    backBars.exit().remove();
+    
+    backBars
+        .attr('x', 0)
+        .attr('y', function (d) {
+            return yScale(d) - 30;
+        })
+        .attr('width', width)
+        .attr('height', function(d) {
+            return (height - 50) / 10;
+        })
+        .attr('fill', function(d) {
+            if(movieROI.indexOf(d) % 2 == 0) {
+                return "#eee";
+            } else {
+                return "#fff";
+            }
+        });
+    
     var circles = svg.selectAll("circle").data(characterData);
     
     circles = circles.enter()
@@ -114,8 +155,8 @@ function createChart() {
         .attr('cx', function(d) {  
             return xScale(d.wordsPercent);
         })
-        .attr('cy', function(d) {
-            return yScale(d.TOTAL_MOVIE_WORDS);
+        .attr('cy', function(d) {        
+            return yScale(d.roi);
         })
         .attr('r', function(d) {
             return 3.5;
