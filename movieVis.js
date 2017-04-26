@@ -19,14 +19,6 @@ d3.json('data/movieData.json', function(error, data) {
     //createMovieData();
 })
 
-//function to place tooltip at mouse coordinates
-function placeDiv(x, y){
-    var tooltip = document.getElementById("tooltip");
-    //set x and y
-    tooltip.style.left = x+'px';
-    tooltip.style.top = y+'px';
-} 
-
 //Read in data from CharacterData
 d3.csv("data/CharacterData.csv", function (data) {
     
@@ -124,7 +116,7 @@ function createChart() {
             return yScale(d.TOTAL_MOVIE_WORDS);
         })
         .attr('r', function(d) {
-            return 3.5;
+            return 5;
         })
         .attr('fill', function(d) {
             //eventually this will need to go into filters
@@ -145,25 +137,33 @@ function createChart() {
             var y = coordinates[1];
                
             //SET VALUES in tooltip from d
-            document.querySelector('#tooltip .char').innerText = d.NAME; //title
-            document.querySelector('#tooltip .movie').innerText = d.MOVIE; //movie
-            document.querySelector('#tooltip .total-words').innerText = "Words Spoken: " + d.CHARACTER_WORDS; //words spoken
-            var percent = Math.round((d.CHARACTER_WORDS/d.TOTAL_MOVIE_WORDS)*100);
-            document.querySelector('#tooltip .percent').innerText = "Percent of Total Movie Words: " + percent + "%"; //percent words spoken
-            document.querySelector('#tooltip .gender').innerText = d.GENDER; //gender
-            document.querySelector('#tooltip .race').innerText = d.RACE;
-            document.querySelector('#tooltip .orientation').innerText = d.SEXUAL_ORIENTATION;
+            $('#tooltip .char').text(d.NAME); //title
+            $('#tooltip .movie').text(d.MOVIE); //movie
+            $('#tooltip .total-words').text("Words Spoken: " + d.CHARACTER_WORDS); //words spoken
+            //if statement to show "< 1%" if calculation rounds to 0
+            var percent = (Math.round((d.CHARACTER_WORDS/d.TOTAL_MOVIE_WORDS)*100));
+            if (percent === 0){
+                percent = "<1";
+            }else{
+                percent = percent;
+            };
+            $('#tooltip .percent').text("Percent of Total Movie Words: " + percent + "%"); //percent words spoken
+            $('#tooltip .gender').text(d.GENDER); //gender
+            $('#tooltip .race').text(d.RACE);
+            $('#tooltip .orientation').text(d.SEXUAL_ORIENTATION);
             
             //SHOW TOOL TIP
-            placeDiv(x, y);
+            //set x and y
+            $("#tooltip").css("left", x+margin.left+'px');
+            $("#tooltip").css("top", y+margin.top+'px');
+            $("#tooltip").fadeIn(300);
             
             
         })
         .on('mouseout', function(d) {
             //Will need to clear the hover information
             //hide tool tip
-//            var tooltip = document.getElementById("tooltip");
-//            tooltip.style.display = 'none';
+            document.getElementById("tooltip").style.display = 'none';
         });
     
 }

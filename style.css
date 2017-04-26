@@ -1,14 +1,16 @@
 #tooltip {
-    background-color: ghostwhite;
-    border:solid 1px darkgray;
+    background-color: #F7F7F7;
+    border:solid 1px #888888;
     height:auto;
-    width: 200px;
+    width: auto;
+    padding: 5px;
     position: absolute;
+    display: none;
 }
 
 #tooltip .title {
-    font-family: "Gil Sans", sans-serif;
-    font-size: 16px;
+    font-family: "Verdana", sans-serif;
+    font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
 }
