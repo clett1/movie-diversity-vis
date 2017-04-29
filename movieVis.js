@@ -4,11 +4,11 @@ var movieData;
 
 //total svg margin
 var margin = {top: 40, right: 60, bottom: 30, left: 40},
-    width = 1200,
+    width = 1300,
     height = 700;
 
 //circles margin
-var circlesMargin = {top: 20, right: 200, bottom: 30, left: 200}
+var circlesMargin = {top: 20, right: 300, bottom: 30, left: 200}
 
 //xScale setup
 var xScale = d3.scaleLinear()
@@ -359,7 +359,6 @@ function createChart() {
         })
     });
     
-    
     var squares = svg.selectAll(".filmMakers").data(filmMakersArray);
     
     squares = squares.enter()
@@ -371,7 +370,7 @@ function createChart() {
     squares
         .attr('x', function(d, i) {
             //There may need to be a scale for this
-            return (width - circlesMargin.left + 40) + (i%7)*15;
+            return (width - 250) + (i%7)*15;
         })
         .attr('y', function(d, i) {
             //scale ROI
