@@ -143,7 +143,7 @@ function createChart() {
         })
         .attr('fill', function(d) {
             if(movieROI.indexOf(d) % 2 == 0) {
-                return "#f3f3f3";
+                return "#f8f8f8";
             } else {
                 return "#fff";
             }
@@ -265,17 +265,17 @@ function createChart() {
                 return "white"
             }
             else if (d.RACE == "white"){
-                return "#992288"
+                return "#bbccee"
             } else if (d.RACE == "black"){
-                return "#11AA99"
+                return "#332288"
             } else if (d.RACE == "asian"){
-                return "#ee7722"
+                return "#882255"
             } else if (d.RACE == "indian"){
-                return "#cccc55"
+                return "#ddcc77"
             } else if (d.RACE == "latino"){
-                return "#3366AA"
+                return "#44AA99"
             } else if (d.RACE == "nonhuman"){
-                return "#bbb"
+                return "#aaa"
             } 
         })
      /*   .attr('fill-opacity', function(d) {
@@ -288,17 +288,17 @@ function createChart() {
         })*/
         .attr('stroke', function(d){
             if (d.RACE == "white"){
-                return "#992288"
+                return "#bbccee"
             } else if (d.RACE == "black"){
-                return "#11AA99"
+                return "#332288"
             } else if (d.RACE == "asian"){
-                return "#ee7722"
+                return "#882255"
             } else if (d.RACE == "indian"){
-                return "#cccc55"
+                return "#ddcc77"
             } else if (d.RACE == "latino"){
-                return "#3366AA"
+                return "#44AA99"
             } else {
-                return "#bbb"
+                return "#aaa"
             }
         })
         .attr('stroke-width', 3)
@@ -368,25 +368,53 @@ function createChart() {
     squares
         .attr('x', function(d, i) {
             //There may need to be a scale for this
-            return (width - 250) + (i%7)*15;
+            return (width - 250) + (i%7)*25;
         })
         .attr('y', function(d, i) {
             //scale ROI
             return yScale(d[1]); 
         })
         .attr('width', function(d) {
-            return 10;  
+            return 12;  
         })
         .attr('height', function(d) {
-            return 10;
+            return 12;
         
         })
-        .attr('fill', function(d) {
-        
+        .attr('fill', function(d){
+            if (d[0].gender == "male"){
+                return "white"
+            }
+            else if (d[0].race == "white"){
+                return "#bbccee"
+            } else if (d[0].race == "black"){
+                return "#332288"
+            } else if (d[0].race == "asian"){
+                return "#882255"
+            } else if (d[0].race == "indian"){
+                return "#ddcc77"
+            } else if (d[0].race == "latino"){
+                return "#44AA99"
+            } else if (d[0].race == "nonhuman"){
+                return "#aaa"
+            } 
         })
-        .attr('stroke', function(d) {
-        
-        });
+        .attr('stroke', function(d){
+            if (d[0].race == "white"){
+                return "#bbccee"
+            } else if (d[0].race == "black"){
+                return "#332288"
+            } else if (d[0].race == "asian"){
+                return "#882255"
+            } else if (d[0].race == "indian"){
+                return "#ddcc77"
+            } else if (d[0].race == "latino"){
+                return "#44AA99"
+            } else {
+                return "#bbb"
+            }
+        })
+        .attr('stroke-width', 2)
     
 }
 
