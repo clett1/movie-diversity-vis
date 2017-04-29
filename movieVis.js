@@ -336,7 +336,7 @@ function createChart() {
             //SHOW TOOL TIP
             //set x and y
             $("#tooltip").css("left", x+margin.left+'px');
-            $("#tooltip").css("top", y+margin.top+'px');
+            $("#tooltip").css("top", y+margin.top-10+'px');
             $("#tooltip").fadeIn(300);
             
             
