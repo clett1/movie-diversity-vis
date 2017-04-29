@@ -5,35 +5,30 @@
       "budget": 1500000,
       "profit": 55652469,
       "roi": 3610,
-      "director": [
+      "filmMakers": [
         {
           "name": "Barry Jenkins",
           "gender": "male",
-          "race": "black"
-        }
-      ],
-      "writers": [
-        {
-          "name": "Barry Jenkins",
-          "gender": "male",
-          "race": "black"
-        }
-      ],
-      "producers": [
+          "race": "black",
+          "role": "director and writer"
+        },
         {
           "name": "Adele Romanski",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Jeremy Kleiner",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Dede Gardner",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "produce"
         }
       ]
     }
@@ -44,40 +39,36 @@
       "budget": 30000000,
       "profit": 427188687,
       "roi": 1324,
-      "director": [
+      "filmMakers": [
         {
           "name": "Damien Chazelle",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
-        {
-          "name": "Damien Chazelle",
-          "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "director and writer"
+        },
         {
           "name": "Jordan Horowitz",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Fred Berger",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Marc Platt",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Gary Gilbert",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -88,35 +79,36 @@
       "budget": 12000000,
       "profit": 126510642,
       "roi": 954,
-      "director": [
+      "filmMakers": [
         {
           "name": "Garth Davis",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
+          "race": "white",
+          "role": "director"
+        },
         {
           "name": "Luke Davies",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Iain Canning",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Angie Fielder",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Emile Sherman",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -127,50 +119,42 @@
       "budget": 25000000,
       "profit": 215918490,
       "roi": 764,
-      "director": [
+      "filmMakers": [
         {
           "name": "Theodore Melfi",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
-        {
-          "name": "Theodore Melfi",
-          "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "director and writer and producer"
         },
         {
           "name": "Allison Schroeder",
           "gender": "female",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Pharrell Williams",
           "gender": "male",
-          "race": "black"
-        },
-        {
-          "name": "Theodore Melfi",
-          "gender": "male",
-          "race": "white"
+          "race": "black",
+          "role": "producer"
         },
         {
           "name": "Donna Gigliotti",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Peter Chernin",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Jenno Topping",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -181,45 +165,42 @@
       "budget": 8500000,
       "profit": 62234018,
       "roi": 632,
-      "director": [
+      "filmMakers": [
         {
           "name": "Kenneth Lonergan",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
-        {
-          "name": "Kenneth Logeran",
-          "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "director and writer"
+        },
         {
           "name": "Matt Damon",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Kimberly Steward",
           "gender": "female",
-          "race": "black"
+          "race": "black",
+          "role": "producer"
         },
         {
           "name": "Kevin Walsh",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Chris Moore",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Lauren Beck",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -230,40 +211,42 @@
       "budget": 200000000,
       "profit": 1054782310,
       "roi": 427,
-      "director": [
+      "filmMakers": [
         {
           "name": "Gareth Edwards",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
+          "race": "white",
+          "role": "director"
+        },
         {
           "name": "Chris Weitz",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "writer"
         },
         {
           "name": "Toby Gilroy",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Simon Emanuel",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Kathleen Kennedy",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Allison Shearmur",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -274,35 +257,36 @@
       "budget": 250000000,
       "profit": 1153304495,
       "roi": 361,
-      "director": [
+      "filmMakers": [
         {
           "name": "Anthony Russo",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "director"
         },
         {
           "name": "Joe Russo",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Christopher Markus",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "writer"
         },
         {
           "name": "Stephen McKeely",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Kevin Feige",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -313,40 +297,42 @@
       "budget": 47000000,
       "profit": 193818134,
       "roi": 312,
-      "director": [
+      "filmMakers": [
         {
           "name": "Denis Villeneuve",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
+          "race": "white",
+          "role": "director"
+        },
         {
           "name": "Eric Heisserer",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Shawn Levy",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Dan Levine",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Aaron Ryder",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "David Linde",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -357,35 +343,36 @@
       "budget": 250000000,
       "profit": 873260194,
       "roi": 249,
-      "director": [
+      "filmMakers": [
         {
           "name": "Zack Snyder",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "writers": [
+          "race": "white",
+          "role": "director"
+        },
         {
           "name": "Chris Terrio",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "writer"
         },
         {
           "name": "David S. Goyer",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Charles Roven",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Deborah Snyder",
           "gender": "female",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
@@ -396,45 +383,48 @@
       "budget": 9000000,
       "profit": 24875508,
       "roi": 176,
-      "director": [
+      "filmMakers": [
         {
           "name": "Pablo Larrain",
           "gender": "male",
-          "race": "hispanic"
-        }
-      ],
-      "writers": [
+          "race": "hispanic",
+          "role": "director"
+        },
         {
           "name": "Noah Oppenheim",
           "gender": "male",
-          "race": "white"
-        }
-      ],
-      "producers": [
+          "race": "white",
+          "role": "writer"
+        },
         {
           "name": "Juan de Dios Larrain",
           "gender": "male",
-          "race": "hispanic"
+          "race": "hispanic",
+          "role": "producer"
         },
         {
           "name": "Darren Aronofsky",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Mickey Liddell",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Scott Franklin",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         },
         {
           "name": "Ari Handel",
           "gender": "male",
-          "race": "white"
+          "race": "white",
+          "role": "producer"
         }
       ]
     }
