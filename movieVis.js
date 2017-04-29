@@ -151,6 +151,8 @@ function createChart() {
     
     circles.exit().remove();
     
+    var colorSet = "gray";
+    
     circles
         .attr('cx', function(d) {  
             return xScale(d.wordsPercent);
@@ -159,16 +161,50 @@ function createChart() {
             return yScale(d.roi);
         })
         .attr('r', function(d) {
-            return 3.5;
+            return 5;
         })
-        .attr('fill', function(d) {
+        .attr('fill', function(d){
+            if (d.GENDER == "male"){
+                return "white"
+            }
+            else if (d.RACE == "white"){
+                return "#992288"
+            } else if (d.RACE == "black"){
+                return "#11AA99"
+            } else if (d.RACE == "asian"){
+                return "#ee7722"
+            } else if (d.RACE == "indian"){
+                return "#cccc55"
+            } else if (d.RACE == "mexican"){
+                return "#3366AA"
+            } else if (d.RACE == "nonhuman"){
+                return "#333333"
+            } 
+        })
+     /*   .attr('fill-opacity', function(d) {
             //eventually this will need to go into filters
             if(d.GENDER == "male") {
-                return "blue";
+                return 0;
             } else if (d.GENDER == "female") {
-                return "red";
+                return 1;
+            }
+        })*/
+        .attr('stroke', function(d){
+            if (d.RACE == "white"){
+                return "#992288"
+            } else if (d.RACE == "black"){
+                return "#11AA99"
+            } else if (d.RACE == "asian"){
+                return "#ee7722"
+            } else if (d.RACE == "indian"){
+                return "#cccc55"
+            } else if (d.RACE == "mexican"){
+                return "#3366AA"
+            } else {
+                return "#333333"
             }
         })
+        .attr('stroke-width', 3)
         .on('mouseover', function(d) {
             //Will need to display the hover information
               console.log(d.NAME + " - "+ d.MOVIE);     
