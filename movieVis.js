@@ -2,17 +2,25 @@
 var characterData;
 var movieData;
 
-var margin = {top: 20, right: 200, bottom: 30, left: 40},
+//total svg margin
+var margin = {top: 20, right: 60, bottom: 30, left: 40},
     width = 1200,
     height = 700;
 
+//circles margin
+var circlesMargin = {top: 20, right: 200, bottom: 30, left: 200}
+
 //xScale setup
 var xScale = d3.scaleLinear()
-                .range([margin.left, width - margin.right]);
+                .range([circlesMargin.left, width - circlesMargin.right]);
 
 //yScale setup
 var yScale = d3.scaleBand()
                 .range([margin.top, height - margin.bottom]);
+
+//roi bar scale setup
+var roiScale = d3.scaleLinear() 
+                    .range([10, circlesMargin.left - 100]);
 
 d3.queue()
   .defer(d3.csv, "/data/CharacterData.csv")
@@ -24,7 +32,6 @@ function analyze(error, character, movie) {
         console.log(error); 
     }
 
-    
     character.forEach(function (d) {
         // Convert numeric values to 'numbers'
         d.CHARACTER_WORDS = +d.CHARACTER_WORDS;
@@ -113,8 +120,7 @@ function createChart() {
       . text("Movie");
     */
     
-    /*Create the circles for the graph
-    *   We may need some filters for this for color
+    /*  These are the rows for each movie
     *
     */
     
@@ -142,6 +148,102 @@ function createChart() {
                 return "#fff";
             }
         });
+    
+    /*ROI BARS
+    *   rect1:  black bar
+    *   rect2:  green bar roi amount
+    */
+    
+    roiScale.domain([d3.min(movieROI), d3.max(movieROI)]);
+    
+    var rect1 = svg.selectAll('.rect1')
+	    .data(movieData);
+    
+    rect1 = rect1
+	    .enter()
+        .append("rect")
+        .merge(rect1);
+    
+    rect1.exit().remove();
+    
+    rect1
+        .attr('class', 'rect1')
+        .attr("x", function(d, i) {
+          return 0;
+        })
+        //
+        .attr("y", function(d, i) {
+          return yScale(d.value["roi"]) - 30;
+        })
+        //
+        .attr("width", function(d) {
+            //create scale for this
+            console.log(roiScale(1 / d.value["roi"]));
+          return roiScale(1 / d.value["roi"]);
+        })
+        //
+        .attr("height", function(d) {
+          return 20;
+        });
+
+   //rect2: ROI times rectangle
+    var rect2 = svg.selectAll('.rect2')
+	    .data(movieData);
+    
+    rect2 = rect2
+	    .enter()
+        .append("rect")
+        .merge(rect2);
+    
+    rect2.exit().remove();
+    
+    rect2
+        .attr('class', 'rect2')
+        .attr("x", function(d, i) {
+          return 0;
+        })
+        //
+        .attr("y", function(d, i) {
+          return yScale(d.value["roi"]);
+        })
+        //
+        .attr("width", function(d) {
+            console.log(d.key);
+            console.log(roiScale(d.value["roi"]))
+            return roiScale(d.value["roi"]);
+        })
+        .attr("height", function(d) {
+          return 20;
+        });
+    
+    /*TEXT
+    *
+    */
+    var roiText = svg.selectAll(".roiText")
+        .data(movieData)
+        .enter()
+        .append("text")
+        .text(function(d) {
+          return d.value["roi"] + 'x';
+        })
+        //
+        .attr("text-anchor", "middle")
+        //
+        .attr("x", function(d, i) {
+          return 60;
+        })
+        //
+        .attr("y", function(d, i) {
+          return yScale(d.value["roi"]) + 10;
+        })
+        //
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px")
+        //.attr("fill", "white");
+    
+    /*CHARACTER CIRCLES
+    *   circles:  
+    */
     
     var circles = svg.selectAll("circle").data(characterData);
     
