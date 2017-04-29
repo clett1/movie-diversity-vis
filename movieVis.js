@@ -143,7 +143,7 @@ function createChart() {
         })
         .attr('fill', function(d) {
             if(movieROI.indexOf(d) % 2 == 0) {
-                return "#eee";
+                return "#f3f3f3";
             } else {
                 return "#fff";
             }
@@ -253,8 +253,6 @@ function createChart() {
     
     circles.exit().remove();
     
-    var colorSet = "gray";
-    
     circles
         .attr('cx', function(d) {  
             return xScale(d.wordsPercent);
@@ -277,10 +275,10 @@ function createChart() {
                 return "#ee7722"
             } else if (d.RACE == "indian"){
                 return "#cccc55"
-            } else if (d.RACE == "mexican"){
+            } else if (d.RACE == "latino"){
                 return "#3366AA"
             } else if (d.RACE == "nonhuman"){
-                return "#333333"
+                return "#bbb"
             } 
         })
      /*   .attr('fill-opacity', function(d) {
@@ -300,10 +298,10 @@ function createChart() {
                 return "#ee7722"
             } else if (d.RACE == "indian"){
                 return "#cccc55"
-            } else if (d.RACE == "mexican"){
+            } else if (d.RACE == "latino"){
                 return "#3366AA"
             } else {
-                return "#333333"
+                return "#bbb"
             }
         })
         .attr('stroke-width', 3)
