@@ -3,7 +3,7 @@ var characterData;
 var movieData;
 
 //total svg margin
-var margin = {top: 20, right: 60, bottom: 30, left: 40},
+var margin = {top: 40, right: 60, bottom: 30, left: 40},
     width = 1200,
     height = 700;
 
@@ -347,8 +347,42 @@ function createChart() {
             document.getElementById("tooltip").style.display = 'none';
         });
     
+    /*
+    *   These squares represent filmmakers (Producers, directors, writers)
+    */
+    var squares = svg.selectAll(".filmMakers").data(movieData);
+    
+    squares = squares.enter()
+                .append('circle')
+                .merge(squares);
+    
+    squares.exit().remove();
+    
+    squares
+        .attr('x', function(d, i) {
+            
+        })
+        .attr('y', function(d) {
+              
+        })
+        .attr('width', function(d) {
+              
+        })
+        .attr('height', function(d) {
+        
+        })
+        .attr('fill', function(d) {
+        
+        })
+        .attr('stroke', function(d) {
+        
+        });
+    
 }
 
+function updateChart(selected) {
+    
+}
 
 
 
