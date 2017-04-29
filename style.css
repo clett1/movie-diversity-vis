@@ -1,3 +1,4 @@
+
 #tooltip {
     background-color: #F7F7F7;
     border:solid 1px #888888;
@@ -39,4 +40,7 @@
 }
 .roiText {
     
+}
+.filmMakers {
+    stroke-width: 3;
 }

@@ -3,12 +3,12 @@ var characterData;
 var movieData;
 
 //total svg margin
-var margin = {top: 20, right: 60, bottom: 30, left: 40},
-    width = 1200,
+var margin = {top: 40, right: 60, bottom: 30, left: 40},
+    width = 1300,
     height = 700;
 
 //circles margin
-var circlesMargin = {top: 20, right: 200, bottom: 30, left: 200}
+var circlesMargin = {top: 20, right: 300, bottom: 30, left: 200}
 
 //xScale setup
 var xScale = d3.scaleLinear()
@@ -178,7 +178,6 @@ function createChart() {
         //
         .attr("width", function(d) {
             //create scale for this
-            console.log(roiScale(1 / d.value["roi"]));
           return roiScale(1 / d.value["roi"]);
         })
         //
@@ -208,8 +207,6 @@ function createChart() {
         })
         //
         .attr("width", function(d) {
-            console.log(d.key);
-            console.log(roiScale(d.value["roi"]))
             return roiScale(d.value["roi"]);
         })
         .attr("height", function(d) {
@@ -334,7 +331,7 @@ function createChart() {
             //SHOW TOOL TIP
             //set x and y
             $("#tooltip").css("left", x+margin.left+'px');
-            $("#tooltip").css("top", y+margin.top+'px');
+            $("#tooltip").css("top", y+margin.top-10+'px');
             $("#tooltip").fadeIn(300);
             
             
@@ -345,8 +342,57 @@ function createChart() {
             document.getElementById("tooltip").style.display = 'none';
         });
     
+    /*
+    *   These squares represent filmmakers (Producers, directors, writers)
+    */
+    
+    //Array to hold all filmmakers from all movies
+    var filmMakersArray = [];
+    
+    //Open movie data, add each filmmaker to the array with the movie's ROI
+    movieData.forEach(function(d) {
+        d.value["filmMakers"].forEach(function(m) { 
+            //Each item in filmMakersArray will be a 2-item array 0: person 1: roi
+            filmMakersArray.push([m, d.value["roi"]]);
+        })
+    });
+    
+    var squares = svg.selectAll(".filmMakers").data(filmMakersArray);
+    
+    squares = squares.enter()
+                .append('rect')
+                .merge(squares);
+    
+    squares.exit().remove();
+    
+    squares
+        .attr('x', function(d, i) {
+            //There may need to be a scale for this
+            return (width - 250) + (i%7)*15;
+        })
+        .attr('y', function(d, i) {
+            //scale ROI
+            return yScale(d[1]); 
+        })
+        .attr('width', function(d) {
+            return 10;  
+        })
+        .attr('height', function(d) {
+            return 10;
+        
+        })
+        .attr('fill', function(d) {
+        
+        })
+        .attr('stroke', function(d) {
+        
+        });
+    
 }
 
+function updateChart(selected) {
+    
+}
 
 
 
