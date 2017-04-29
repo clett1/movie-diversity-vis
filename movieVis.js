@@ -14,7 +14,6 @@ var xScale = d3.scaleLinear()
 var yScale = d3.scaleBand()
                 .range([margin.top, height - margin.bottom]);
 
-
 d3.queue()
   .defer(d3.csv, "/data/CharacterData.csv")
   .defer(d3.json, "/data/movieData.json")
@@ -24,6 +23,7 @@ function analyze(error, character, movie) {
     if(error) { 
         console.log(error); 
     }
+
     
     character.forEach(function (d) {
         // Convert numeric values to 'numbers'
@@ -207,10 +207,42 @@ function createChart() {
         .attr('stroke-width', 3)
         .on('mouseover', function(d) {
             //Will need to display the hover information
-              console.log(d.NAME + " - "+ d.MOVIE);     
+              console.log(d.NAME + " - "+ d.MOVIE);
+            
+            //GET COORDINATES of mouse
+            var coordinates = [0,0];
+            coordinates = d3.mouse(this);
+            var x = coordinates[0];
+            var y = coordinates[1];
+               
+            //SET VALUES in tooltip from d
+            $('#tooltip .char').text(d.NAME); //title
+            $('#tooltip .movie').text(d.MOVIE); //movie
+            $('#tooltip .total-words').text("Words Spoken: " + d.CHARACTER_WORDS); //words spoken
+            //if statement to show "< 1%" if calculation rounds to 0
+            var percent = (Math.round((d.CHARACTER_WORDS/d.TOTAL_MOVIE_WORDS)*100));
+            if (percent === 0){
+                percent = "<1";
+            }else{
+                percent = percent;
+            };
+            $('#tooltip .percent').text("Percent of Total Movie Words: " + percent + "%"); //percent words spoken
+            $('#tooltip .gender').text(d.GENDER); //gender
+            $('#tooltip .race').text(d.RACE);
+            $('#tooltip .orientation').text(d.SEXUAL_ORIENTATION);
+            
+            //SHOW TOOL TIP
+            //set x and y
+            $("#tooltip").css("left", x+margin.left+'px');
+            $("#tooltip").css("top", y+margin.top+'px');
+            $("#tooltip").fadeIn(300);
+            
+            
         })
         .on('mouseout', function(d) {
             //Will need to clear the hover information
+            //hide tool tip
+            document.getElementById("tooltip").style.display = 'none';
         });
     
 }
