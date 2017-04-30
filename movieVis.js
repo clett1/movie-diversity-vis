@@ -41,7 +41,7 @@ function analyze(error, character, movie) {
 
     characterData = character;
     movieData = movie; 
-    
+
     createChart();
    
 }
@@ -156,35 +156,54 @@ function createChart() {
     
     roiScale.domain([d3.min(movieROI), d3.max(movieROI)]);
     
-    var rect1 = svg.selectAll('.rect1')
-	    .data(movieData);
-    
-    rect1 = rect1
-	    .enter()
-        .append("rect")
-        .merge(rect1);
-    
-    rect1.exit().remove();
-    
-    rect1
-        .attr('class', 'rect1')
-        .attr("x", function(d, i) {
-          return 0;
-        })
-        //
-        .attr("y", function(d, i) {
-          return yScale(d.value["roi"]) - 30;
-        })
-        //
-        .attr("width", function(d) {
-            //create scale for this
-          return roiScale(1 / d.value["roi"]);
-        })
-        //
-        .attr("height", function(d) {
-          return 20;
-        });
+    var movieTitleTexts = svg.selectAll(".text")
+	  .data(movieData)
+	  .enter()
+	  .append("text")
+	  .text(function(d) {
+		return d.key;
+	  })
+	  .attr("text-anchor", "right")
+	  .attr("x", function(d, i) {
+		return 0;
+	  })
+	  .attr("y", function(d, i) {
+		return yScale(d.value["roi"]) - 10;
+	  })
+	  .attr("font-family", "sans-serif")
+	  .attr("font-size", "11px")
+	  .attr("fill", "black");
 
+    // var rect1 = svg.selectAll('.rect1')
+	//     .data(movieData);
+    //
+
+    // rect1 = rect1
+	//     .enter()
+    //     .append("rect")
+    //     .merge(rect1);
+    //
+    // rect1.exit().remove();
+    //
+    // rect1
+    //     .attr('class', 'rect1')
+    //     .attr("x", function(d, i) {
+    //       return 0;
+    //     })
+    //     //
+    //     .attr("y", function(d, i) {
+    //       return yScale(d.value["roi"]) - 30;
+    //     })
+    //     //
+    //     .attr("width", function(d) {
+    //         //create scale for this
+    //       return roiScale(1 / d.value["roi"]);
+    //     })
+    //     //
+    //     .attr("height", function(d) {
+    //       return 20;
+    //     });
+    //
    //rect2: ROI times rectangle
     var rect2 = svg.selectAll('.rect2')
 	    .data(movieData);
@@ -201,11 +220,9 @@ function createChart() {
         .attr("x", function(d, i) {
           return 0;
         })
-        //
         .attr("y", function(d, i) {
           return yScale(d.value["roi"]);
         })
-        //
         .attr("width", function(d) {
             return roiScale(d.value["roi"]);
         })
@@ -223,21 +240,40 @@ function createChart() {
         .text(function(d) {
           return d.value["roi"] + 'x';
         })
-        //
         .attr("text-anchor", "middle")
-        //
         .attr("x", function(d, i) {
           return 60;
         })
-        //
         .attr("y", function(d, i) {
-          return yScale(d.value["roi"]) + 10;
+          return yScale(d.value["roi"]) + 15;
         })
-        //
         .attr("font-family", "sans-serif")
         .attr("font-size", "11px")
-        //.attr("fill", "white");
+        .attr("fill", "black");
     
+	var images = svg.selectAll('image')
+	  .data(movieData)
+	  .enter()
+	  .append("svg:image")
+	  .attr('xlink:href', function(d, i) {
+		return 'posters/' + i + '.jpg';
+	  })
+	  .attr("x", function(d, i) {
+		return 130;
+	  })
+	  .attr("y", function(d, i) {
+		// return i * 100;
+		return yScale(d.value["roi"]) - 30;
+	  })
+	  .attr("width", function(d) {
+		return 50;
+	  })
+	  .attr("height", function(d) {
+		return 60;
+	  })
+
+
+
     /*CHARACTER CIRCLES
     *   circles:  
     */
