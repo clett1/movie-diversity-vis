@@ -1,4 +1,10 @@
-
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    
+}
 #tooltip {
     background-color: #F7F7F7;
     border:solid 1px #888888;
