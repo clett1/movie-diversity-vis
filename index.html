@@ -15,16 +15,54 @@
 <h1>Movie Diversity Visualization</h1>
 <p>Visualization in HCI Data Visualization final project.. blah blah</p> 
 <!-- filter buttons-->
-    <div id = "filterButton">
-        <p>Filter buttons will be here</p>
-        <form action="">
-<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
-<input type="checkbox" name="vehicle" value="Car">I have a car 
-<input type="submit" value="Submit">
+<div class = "filterContainer">
 
-</form>
+<div class = button>  
+<div class = "filterButton" id = "all" onclick = "switchButton('all')" style = "background-color:gray"></div>
+<p><b>All</b></p>
+</div>
+    <div class = "buffer"></div>
 
+<div class = button>  
+<div class = "filterButton" id = "female" onclick = "switchButton('female')"></div>
+<p>Female</p>
+</div>
+
+<div class = button>  
+<div class = "filterButton" id = "male" onclick = "switchButton('male')"></div>
+<p>Male</p>
+</div>
+    
+<div class = button>  
+<div class = "filterButton" id = "white" onclick = "switchButton('white')"></div>
+<p>White</p>
+</div>
+    
+<div class = button>  
+<div class = "filterButton" id = "black" onclick = "switchButton('black')"></div>
+<p>Black</p>
+</div>
+    
+<div class = button>  
+<div class = "filterButton" id = "latino" onclick = "switchButton('latino')"></div>
+<p>Latino</p>
+</div>
+    
+<div class = button>  
+<div class = "filterButton" id = "indian" onclick = "switchButton('indian')"></div>
+<p>Indian</p>
+</div>
+    
+<div class = button>  
+<div class = "filterButton" id = "asian" onclick = "switchButton('asian')"></div>
+<p>Asian</p>
+</div>
+    
     </div>
+
+
+
+    
 <!-- tooltip template -->
     <div id="tooltip">
         <div class="title char"></div>
@@ -38,3 +76,7 @@
     
 </body>
 </html>
+
+<script>
+
+</script>

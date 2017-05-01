@@ -5,6 +5,39 @@ body {
     font-family: sans-serif;
     
 }
+.buffer {
+    width: 5%;
+}
+.filterContainer {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    align-content: space-between;
+    justify-content: space-between;
+}
+.button {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.characterCircle {
+    opacity: 1.0;
+}
+.filterButton {
+    border-radius: 50%;
+    border: 2px solid gray;
+    background-color: #eee;
+    width: 15px;
+    height: 15px;
+}
+.filterButton:hover {
+    background-color: lightgray;
+}
+.filterButtonActive {
+    
+}
 #tooltip {
     background-color: #F7F7F7;
     border:solid 1px #888888;
