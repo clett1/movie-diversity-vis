@@ -5,13 +5,36 @@
     <meta charset="UTF-8">
     <title>Movie Diversity Visualization</title>
     <link rel="stylesheet" href="style.css"/>
+    <!-- jQuery library for Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script type="application/javascript" src="movieVis.js"></script>
 </head>
 
 <body>
 <h1>Movie Diversity Visualization</h1>
-<p>Visualization in HCI Data Visualization final project.. blah blah</p>  
+<p>Visualization in HCI Data Visualization final project.. blah blah</p> 
+<!-- filter buttons-->
+    <div id = "filterButton">
+        <p>Filter buttons will be here</p>
+        <form action="">
+<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+<input type="checkbox" name="vehicle" value="Car">I have a car 
+<input type="submit" value="Submit">
 
+</form>
+
+    </div>
+<!-- tooltip template -->
+    <div id="tooltip">
+        <div class="title char"></div>
+        <div class="info movie"></div>
+        <div class="info total-words"></div>
+        <div class="info percent"></div>
+        <div class="info gender"></div>
+        <div class="info race"></div>
+        <div class="info orientation"></div>
+    </div>
+    
 </body>
 </html>

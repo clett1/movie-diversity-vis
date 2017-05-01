@@ -2,58 +2,82 @@
 var characterData;
 var movieData;
 
-var margin = {top: 20, right: 60, bottom: 30, left: 40},
-    width = 1200,
-    height = 500;
+//total svg margin
+var margin = {top: 40, right: 60, bottom: 30, left: 40},
+    width = 1300,
+    height = 700;
+
+//circles margin
+var circlesMargin = {top: 20, right: 300, bottom: 30, left: 200}
 
 //xScale setup
 var xScale = d3.scaleLinear()
-                .range([margin.left, width - margin.right]);
+                .range([circlesMargin.left, width - circlesMargin.right]);
 
 //yScale setup
 var yScale = d3.scaleBand()
                 .range([margin.top, height - margin.bottom]);
 
-d3.json('data/movieData.json', function(error, data) {
-    movieData = data;
-    //createMovieData();
-})
+//roi bar scale setup
+var roiScale = d3.scaleLinear() 
+                    .range([10, circlesMargin.left - 100]);
 
+d3.queue()
+  .defer(d3.csv, "/data/CharacterData.csv")
+  .defer(d3.json, "/data/movieData.json")
+  .await(analyze);
 
-//Read in data from CharacterData
-d3.csv("data/CharacterData.csv", function (data) {
-    
-    data.forEach(function (d) {
+function analyze(error, character, movie) {
+    if(error) { 
+        console.log(error); 
+    }
+
+    character.forEach(function (d) {
         // Convert numeric values to 'numbers'
         d.CHARACTER_WORDS = +d.CHARACTER_WORDS;
         d.TOTAL_MOVIE_WORDS = +d.TOTAL_MOVIE_WORDS;
         d.wordsPercent = (+d.CHARACTER_WORDS / +d.TOTAL_MOVIE_WORDS) * 100;
     });
 
-    // Store csv data in a global variable
-    characterData = data;
-    
+    characterData = character;
+    movieData = movie; 
+
     createChart();
-});
+   
+}
 
 /*
 *   This is where the main chart is created
 */
 function createChart() {
 
-    
+    //creates array wordCountPercent to set x scale domain
     var wordCountPercent = characterData.map(function(d) {
         return (d.CHARACTER_WORDS / d.TOTAL_MOVIE_WORDS) * 100;
     });
+  
     
-    var totalWords = characterData.map(function(d) {
-        return d.TOTAL_MOVIE_WORDS;
-    })
+    //create array movieROI to set y scale domain
+    var movieROI = movieData.map(function(d) {
+        return d.value["roi"];
+    });
+    
+    //assign ROI values to character data array
+    characterData.forEach(function (d) {
+        
+        movieData.forEach(function(m) {
+            if (m.key == d.MOVIE) {
+
+                d.roi = m.value["roi"];
+            }
+         })
+    });
     
     //x scale axis (word spoken percentage)
     xScale.domain([0, d3.max(wordCountPercent)]); 
+    
     //y scale (total words for now until JSON is complete)
-    yScale.domain(totalWords);
+    yScale.domain(movieROI);
     
     //X axis
     var xAxis = d3.axisBottom();
@@ -96,10 +120,164 @@ function createChart() {
       . text("Movie");
     */
     
-    /*Create the circles for the graph
-    *   We may need some filters for this for color
+    /*  These are the rows for each movie
     *
     */
+    
+    var backBars = svg.selectAll("rect").data(movieROI);
+    
+    backBars = backBars.enter()
+                .append('rect')
+                .merge(backBars);
+    
+    backBars.exit().remove();
+    
+    backBars
+        .attr('x', 0)
+        .attr('y', function (d) {
+            return yScale(d) - 30;
+        })
+        .attr('width', width)
+        .attr('height', function(d) {
+            return (height - 50) / 10;
+        })
+        .attr('fill', function(d) {
+            if(movieROI.indexOf(d) % 2 == 0) {
+                return "#f8f8f8";
+            } else {
+                return "#fff";
+            }
+        });
+    
+    /*ROI BARS
+    *   rect1:  black bar
+    *   rect2:  green bar roi amount
+    */
+    
+    roiScale.domain([d3.min(movieROI), d3.max(movieROI)]);
+    
+    var movieTitleTexts = svg.selectAll(".text")
+	  .data(movieData)
+	  .enter()
+	  .append("text")
+	  .text(function(d) {
+		return d.key;
+	  })
+	  .attr("text-anchor", "right")
+	  .attr("x", function(d, i) {
+		return 0;
+	  })
+	  .attr("y", function(d, i) {
+		return yScale(d.value["roi"]) - 10;
+	  })
+	  .attr("font-family", "sans-serif")
+	  .attr("font-size", "11px")
+	  .attr("fill", "black");
+
+    // var rect1 = svg.selectAll('.rect1')
+	//     .data(movieData);
+    //
+
+    // rect1 = rect1
+	//     .enter()
+    //     .append("rect")
+    //     .merge(rect1);
+    //
+    // rect1.exit().remove();
+    //
+    // rect1
+    //     .attr('class', 'rect1')
+    //     .attr("x", function(d, i) {
+    //       return 0;
+    //     })
+    //     //
+    //     .attr("y", function(d, i) {
+    //       return yScale(d.value["roi"]) - 30;
+    //     })
+    //     //
+    //     .attr("width", function(d) {
+    //         //create scale for this
+    //       return roiScale(1 / d.value["roi"]);
+    //     })
+    //     //
+    //     .attr("height", function(d) {
+    //       return 20;
+    //     });
+    //
+   //rect2: ROI times rectangle
+    var rect2 = svg.selectAll('.rect2')
+	    .data(movieData);
+    
+    rect2 = rect2
+	    .enter()
+        .append("rect")
+        .merge(rect2);
+    
+    rect2.exit().remove();
+    
+    rect2
+        .attr('class', 'rect2')
+        .attr("x", function(d, i) {
+          return 0;
+        })
+        .attr("y", function(d, i) {
+          return yScale(d.value["roi"]);
+        })
+        .attr("width", function(d) {
+            return roiScale(d.value["roi"]);
+        })
+        .attr("height", function(d) {
+          return 20;
+        });
+    
+    /*TEXT
+    *
+    */
+    var roiText = svg.selectAll(".roiText")
+        .data(movieData)
+        .enter()
+        .append("text")
+        .text(function(d) {
+          return d.value["roi"] + 'x';
+        })
+        .attr("text-anchor", "middle")
+        .attr("x", function(d, i) {
+          return 60;
+        })
+        .attr("y", function(d, i) {
+          return yScale(d.value["roi"]) + 15;
+        })
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px")
+        .attr("fill", "black");
+    
+	var images = svg.selectAll('image')
+	  .data(movieData)
+	  .enter()
+	  .append("svg:image")
+	  .attr('xlink:href', function(d, i) {
+		return 'posters/' + i + '.jpg';
+	  })
+	  .attr("x", function(d, i) {
+		return 130;
+	  })
+	  .attr("y", function(d, i) {
+		// return i * 100;
+		return yScale(d.value["roi"]) - 30;
+	  })
+	  .attr("width", function(d) {
+		return 50;
+	  })
+	  .attr("height", function(d) {
+		return 60;
+	  })
+
+
+
+    /*CHARACTER CIRCLES
+    *   circles:  
+    */
+    
     var circles = svg.selectAll("circle").data(characterData);
     
     circles = circles.enter()
@@ -112,31 +290,173 @@ function createChart() {
         .attr('cx', function(d) {  
             return xScale(d.wordsPercent);
         })
-        .attr('cy', function(d) {
-            console.log(d.TOTAL_MOVIE_WORDS);
-            return yScale(d.TOTAL_MOVIE_WORDS);
+        .attr('cy', function(d) {        
+            return yScale(d.roi);
         })
         .attr('r', function(d) {
-            return 3.5;
+            return 5;
         })
-        .attr('fill', function(d) {
+        .attr('fill', function(d){
+            if (d.GENDER == "male"){
+                return "white"
+            }
+            else if (d.RACE == "white"){
+                return "#bbccee"
+            } else if (d.RACE == "black"){
+                return "#332288"
+            } else if (d.RACE == "asian"){
+                return "#882255"
+            } else if (d.RACE == "indian"){
+                return "#ddcc77"
+            } else if (d.RACE == "latino"){
+                return "#44AA99"
+            } else if (d.RACE == "nonhuman"){
+                return "#aaa"
+            } 
+        })
+     /*   .attr('fill-opacity', function(d) {
             //eventually this will need to go into filters
             if(d.GENDER == "male") {
-                return "blue";
+                return 0;
             } else if (d.GENDER == "female") {
-                return "red";
+                return 1;
+            }
+        })*/
+        .attr('stroke', function(d){
+            if (d.RACE == "white"){
+                return "#bbccee"
+            } else if (d.RACE == "black"){
+                return "#332288"
+            } else if (d.RACE == "asian"){
+                return "#882255"
+            } else if (d.RACE == "indian"){
+                return "#ddcc77"
+            } else if (d.RACE == "latino"){
+                return "#44AA99"
+            } else {
+                return "#aaa"
             }
         })
+        .attr('stroke-width', 3)
         .on('mouseover', function(d) {
             //Will need to display the hover information
-              console.log(d.NAME + " - "+ d.MOVIE);     
+              console.log(d.NAME + " - "+ d.MOVIE);
+            
+            //GET COORDINATES of mouse
+            var coordinates = [0,0];
+            coordinates = d3.mouse(this);
+            var x = coordinates[0];
+            var y = coordinates[1];
+               
+            //SET VALUES in tooltip from d
+            $('#tooltip .char').text(d.NAME); //title
+            $('#tooltip .movie').text(d.MOVIE); //movie
+            $('#tooltip .total-words').text("Words Spoken: " + d.CHARACTER_WORDS); //words spoken
+            //if statement to show "< 1%" if calculation rounds to 0
+            var percent = (Math.round((d.CHARACTER_WORDS/d.TOTAL_MOVIE_WORDS)*100));
+            if (percent === 0){
+                percent = "<1";
+            }else{
+                percent = percent;
+            };
+            $('#tooltip .percent').text("Percent of Total Movie Words: " + percent + "%"); //percent words spoken
+            $('#tooltip .gender').text(d.GENDER); //gender
+            $('#tooltip .race').text(d.RACE);
+            $('#tooltip .orientation').text(d.SEXUAL_ORIENTATION);
+            
+            //SHOW TOOL TIP
+            //set x and y
+            $("#tooltip").css("left", x+margin.left+'px');
+            $("#tooltip").css("top", y+margin.top-10+'px');
+            $("#tooltip").fadeIn(300);
+            
+            
         })
         .on('mouseout', function(d) {
             //Will need to clear the hover information
+            //hide tool tip
+            document.getElementById("tooltip").style.display = 'none';
         });
+    
+    /*
+    *   These squares represent filmmakers (Producers, directors, writers)
+    */
+    
+    //Array to hold all filmmakers from all movies
+    var filmMakersArray = [];
+    
+    //Open movie data, add each filmmaker to the array with the movie's ROI
+    movieData.forEach(function(d) {
+        d.value["filmMakers"].forEach(function(m) { 
+            //Each item in filmMakersArray will be a 2-item array 0: person 1: roi
+            filmMakersArray.push([m, d.value["roi"]]);
+        })
+    });
+    
+    var squares = svg.selectAll(".filmMakers").data(filmMakersArray);
+    
+    squares = squares.enter()
+                .append('rect')
+                .merge(squares);
+    
+    squares.exit().remove();
+    
+    squares
+        .attr('x', function(d, i) {
+            //There may need to be a scale for this
+            return (width - 250) + (i%7)*25;
+        })
+        .attr('y', function(d, i) {
+            //scale ROI
+            return yScale(d[1]); 
+        })
+        .attr('width', function(d) {
+            return 12;  
+        })
+        .attr('height', function(d) {
+            return 12;
+        
+        })
+        .attr('fill', function(d){
+            if (d[0].gender == "male"){
+                return "white"
+            }
+            else if (d[0].race == "white"){
+                return "#bbccee"
+            } else if (d[0].race == "black"){
+                return "#332288"
+            } else if (d[0].race == "asian"){
+                return "#882255"
+            } else if (d[0].race == "indian"){
+                return "#ddcc77"
+            } else if (d[0].race == "latino"){
+                return "#44AA99"
+            } else if (d[0].race == "nonhuman"){
+                return "#aaa"
+            } 
+        })
+        .attr('stroke', function(d){
+            if (d[0].race == "white"){
+                return "#bbccee"
+            } else if (d[0].race == "black"){
+                return "#332288"
+            } else if (d[0].race == "asian"){
+                return "#882255"
+            } else if (d[0].race == "indian"){
+                return "#ddcc77"
+            } else if (d[0].race == "latino"){
+                return "#44AA99"
+            } else {
+                return "#bbb"
+            }
+        })
+        .attr('stroke-width', 2)
     
 }
 
+function updateChart(selected) {
+    
+}
 
 
 
