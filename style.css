@@ -8,7 +8,6 @@ body {
 .buffer {
     width: 5%;
 }
-<<<<<<< HEAD
 p {
     font-size: 9px;
 }
@@ -27,8 +26,6 @@ p {
 .intro {
     width: 60%;
 }
-=======
->>>>>>> origin/master
 .filterContainer {
     display: flex;
     flex-direction: row;

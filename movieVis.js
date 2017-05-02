@@ -108,19 +108,19 @@ function createChart() {
     
     // ROI graph title
     var roiTitle = svg.append("text")
-                    .attr("x", margin.left)
-                    .attr("y", -15)
+                    .attr("x", margin.left - 40)
+                    .attr("y", -10)
                     .attr("class", "graph-title")
                     //.style("text-anchor", "end")
-                    .text("ROI")
+                    .text("Return on Investment")
     // TODO: On click function shows info
     
     //Character data graph title
     var charTitle = svg.append("text")
                     .attr("x", function(d){
-                        return margin.left + circlesMargin.left;
+                        return margin.left + circlesMargin.left - 40;
                     })
-                    .attr("y", -15)
+                    .attr("y", -10)
                     .attr("class", "graph-title")
                     //.style("text-anchor", "end")
                     .text("Character's Percent of Words Spoken in Film")
@@ -130,7 +130,7 @@ function createChart() {
                     .attr("x", function(d){
                         return width-160
                     })
-                    .attr("y", -15)
+                    .attr("y", -10)
                     .attr("class", "graph-title")
                     .style("text-anchor", "end")
                     .text("Filmmakers")
