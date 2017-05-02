@@ -1,6 +1,15 @@
 //Global variable for all character data
 var characterData;
 var movieData;
+var topStuff = document.getElementById("everything");
+console.log(topStuff.offsetHeight);
+
+var checkImage = new Image();
+
+checkImage.onload = function() {
+
+}
+checkImage.src = 'checkMark.png';
 
 //this object represents which filters are on and off... Originally they are all on
 var filterSwitches = {all: true, female: false, male: false, white: false, black: false, latino: false, indian: false, asian: false}
@@ -8,11 +17,11 @@ var filterSwitches = {all: true, female: false, male: false, white: false, black
 
 //total svg margin
 var margin = {top: 40, right: 60, bottom: 40, left: 40},
-    width = 1300,
+    width = 1400,
     height = 800;
 
 //circles margin
-var circlesMargin = {top: 30, right: 300, bottom: 30, left: 200}
+var circlesMargin = {top: 30, right: 300, bottom: 30, left: 250}
 
 //xScale setup
 var xScale = d3.scaleLinear()
@@ -252,7 +261,7 @@ function createChart() {
 		return 'posters/' + i + '.jpg';
 	  })
 	  .attr("x", function(d, i) {
-		return 130;
+		return circlesMargin.left - 60;
 	  })
 	  .attr("y", function(d, i) {
 		// return i * 100;
@@ -436,11 +445,15 @@ function updateChart(selectedFilter) {
                 
                 for (var key in filterSwitches) {
                     if(!filterSwitches.hasOwnProperty(key)) continue;
-
+                    
                     if(filterSwitches[key]) {
                         //for the true filter keys, return data
                         if(d.GENDER == key || d.RACE == key) {
-                            return d;
+                            
+                            /*if(filterSwitches.female == true && filterSwitches[d.RACE])
+                             */   
+                                return d;
+                            
                         }
                     }
 
@@ -451,9 +464,11 @@ function updateChart(selectedFilter) {
         .attr("class", "characterCircles")
         .attr("transform",  "translate(40,40)")
         .attr('cx', function(d) {  
+            d.x = xScale(d.wordsPercent);
             return xScale(d.wordsPercent);
         })
-        .attr('cy', function(d) {        
+        .attr('cy', function(d) { 
+            d.y = yScale(d.roi);
             return yScale(d.roi);
         })
         .attr('r', function(d) {
@@ -510,7 +525,10 @@ function updateChart(selectedFilter) {
             coordinates = d3.mouse(this);
             var x = coordinates[0];
             var y = coordinates[1];
-               
+        
+            console.log(d.x, d.y);
+            //console.log(mainChart.x, mainChart.y);  
+        
             //SET VALUES in tooltip from d
             $('#tooltip .char').text(d.NAME); //title
             $('#tooltip .movie').text(d.MOVIE); //movie
@@ -530,8 +548,8 @@ function updateChart(selectedFilter) {
             //SHOW TOOL TIP
             //set x and y
 
-            $("#tooltip").css("left", x - 105 +'px');
-            $("#tooltip").css("top", y + 120 +'px');
+            $("#tooltip").css("left", d.x + 'px');
+            $("#tooltip").css("top", d.y + topStuff.offsetHeight - 80 +'px');
             $("#tooltip").fadeIn(200); 
         })
     
