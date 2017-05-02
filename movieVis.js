@@ -7,8 +7,9 @@ var filterSwitches = {all: true, female: false, male: false, white: false, black
 
 
 //total svg margin
-var margin = {top: 40, right: 60, bottom: 30, left: 40},
-    width = 1300,
+
+var margin = {top: 30, right: 60, bottom: 30, left: 40},
+    width = 1200,
     height = 700;
 
 //circles margin
@@ -105,6 +106,53 @@ function createChart() {
         .attr("y", 50)
         .style("text-anchor", "end")
         .text("% of Words Spoken");
+
+/*
+  // y-axis
+  svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("class", "label")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+      . text("Movie");
+    */
+    
+    // ROI graph title
+    var roiTitle = svg.append("text")
+                    .attr("x", margin.left)
+                    .attr("y", -15)
+                    .attr("class", "graph-title")
+                    .style("text-anchor", "end")
+                    .text("ROI")
+    // TODO: On click function shows info
+    
+    //Character data graph title
+    var charTitle = svg.append("text")
+                    .attr("x", function(d){
+                        return width-650
+                    })
+                    .attr("y", -15)
+                    .attr("class", "graph-title")
+                    .style("text-anchor", "end")
+                    .text("Character's Percent of Words Spoken in Film")
+    
+    //Filmmaker graph title
+   var makerTitle = svg.append("text")
+                    .attr("x", function(d){
+                        return width-160
+                    })
+                    .attr("y", -15)
+                    .attr("class", "graph-title")
+                    .style("text-anchor", "end")
+                    .text("Filmmakers")
+    
+    /*  These are the rows for each movie
+    *
+    */
     
         var backBars = svg.selectAll("rect").data(movieROI);
     
@@ -481,12 +529,12 @@ function updateChart(selectedFilter) {
             
             //SHOW TOOL TIP
             //set x and y
-            $("#tooltip").css("left", x - 100 +'px');
-            $("#tooltip").css("top", y + 80+'px');
-            $("#tooltip").fadeIn(100);
-            
-            
+
+            $("#tooltip").css("left", x - 105 +'px');
+            $("#tooltip").css("top", y + 120 +'px');
+            $("#tooltip").fadeIn(200); 
         })
+    
         .on('mouseout', function(d) {
             //Will need to clear the hover information
             //hide tool tip
@@ -567,6 +615,35 @@ function updateChart(selectedFilter) {
             }
         })
         .attr('stroke-width', 2)
+        .on('mouseover', function(d) {
+            //Will need to display the hover information
+              console.log(d[0].name + " - " + d[0].role);
+            
+            //GET COORDINATES of mouse
+            var coordinates = [0,0];
+            coordinates = d3.mouse(this);
+            var x = coordinates[0];
+            var y = coordinates[1];
+               
+            //SET VALUES in tooltip from d
+            $('#tooltip .char').text(d[0].name); //title
+            $('#tooltip .total-words').text("Role: " + d[0].role); 
+            $('#tooltip .gender').text(d[0].gender); //gender
+            $('#tooltip .race').text(d[0].race);
+            
+            //SHOW TOOL TIP
+            //set x and y
+
+            $("#tooltip").css("left", x - 105 +'px');
+            $("#tooltip").css("top", y + 120 +'px');
+            $("#tooltip").fadeIn(200); 
+        })
+    
+        .on('mouseout', function(d) {
+            //Will need to clear the hover information
+            //hide tool tip
+            document.getElementById("tooltip").style.display = 'none';
+        });
     
 }
 
