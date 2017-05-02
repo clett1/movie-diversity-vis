@@ -17,11 +17,11 @@ var filterSwitches = {all: true, female: false, male: false, white: false, black
 
 //total svg margin
 var margin = {top: 40, right: 60, bottom: 40, left: 40},
-    width = 1300,
+    width = 1400,
     height = 800;
 
 //circles margin
-var circlesMargin = {top: 30, right: 300, bottom: 30, left: 200}
+var circlesMargin = {top: 30, right: 300, bottom: 30, left: 250}
 
 //xScale setup
 var xScale = d3.scaleLinear()
@@ -261,7 +261,7 @@ function createChart() {
 		return 'posters/' + i + '.jpg';
 	  })
 	  .attr("x", function(d, i) {
-		return 130;
+		return circlesMargin.left - 60;
 	  })
 	  .attr("y", function(d, i) {
 		// return i * 100;
