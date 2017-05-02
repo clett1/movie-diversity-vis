@@ -503,6 +503,13 @@ function updateChart(selectedFilter) {
     
         .on('mouseout', function(d) {
             //Will need to clear the hover information
+            $('#tooltip .char').empty();
+            $('#tooltip .movie').empty();
+            $('#tooltip .total-words').empty();
+            $('#tooltip .percent').empty();
+            $('#tooltip .gender').empty(); 
+            $('#tooltip .race').empty();
+            $('#tooltip .orientation').empty();
             //hide tool tip
             document.getElementById("tooltip").style.display = 'none';
         });
@@ -593,9 +600,9 @@ function updateChart(selectedFilter) {
                
             //SET VALUES in tooltip from d
             $('#tooltip .char').text(d[0].name); //title
-            $('#tooltip .total-words').text("Role: " + d[0].role); 
-            $('#tooltip .gender').text(d[0].gender); //gender
-            $('#tooltip .race').text(d[0].race);
+            $('#tooltip .percent').text(d[0].gender); //change to gender 
+            $('#tooltip .total-words').text("Role: " + d[0].role); //change to role
+            $('#tooltip .gender').text(d[0].race); //change to race
             
             //SHOW TOOL TIP
             //set x and y
@@ -607,6 +614,11 @@ function updateChart(selectedFilter) {
     
         .on('mouseout', function(d) {
             //Will need to clear the hover information
+            $('#tooltip .char').empty();
+            $('#tooltip .percent').empty();
+            $('#tooltip .total-words').empty();
+            $('#tooltip .gender').empty(); 
+            $('#tooltip .race').empty();
             //hide tool tip
             document.getElementById("tooltip").style.display = 'none';
         });

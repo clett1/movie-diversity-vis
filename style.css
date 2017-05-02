@@ -2,14 +2,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    align-content: center;
-    font-family: sans-serif;
+    font-family: "Verdana", sans-serif;
     
 }
 .buffer {
     width: 5%;
 }
+<<<<<<< HEAD
 p {
     font-size: 9px;
 }
@@ -28,6 +27,8 @@ p {
 .intro {
     width: 60%;
 }
+=======
+>>>>>>> origin/master
 .filterContainer {
     display: flex;
     flex-direction: row;
@@ -88,7 +89,7 @@ p {
     
 }
 #tooltip {
-    background-color: #F7F7F7;
+    background-color: #333;
     border:solid 1px #888888;
     height:auto;
     width: auto;
@@ -101,10 +102,12 @@ p {
     font-family: "Verdana", sans-serif;
     font-size: 14px;
     font-weight: 600;
+    color: white;
     text-transform: uppercase;
 }
 
 #tooltip .info {
+    color: white;
     font-family: "Gil Sans", sans-serif;
     font-size: 11px;
     font-weight: 300;
