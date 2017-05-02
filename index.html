@@ -14,16 +14,54 @@
 <body>
     
 <div id = "everything">
-<h1>Movie Diversity Visualization</h1>
-<p>Visualization in HCI Data Visualization final project.. blah blah</p> 
-<!-- filter buttons-->
-<div class = "filterContainer">
-
-<div class = button>  
-<div class = "filterButton" id = "all" onclick = "switchButton('all')" style = "background-color:gray"></div>
-<p><b>All</b></p>
+<div>
+    <div class = "intro">
+    <h2>Movie Diversity Visualization</h2>
+    <p style = "font-size: 12px">Below is a chart visualizing the diversity of 10 popular movies of 2016. Some were celebrated for their perceived diversity, but upon further investigation we discovered that representation may not be as diverse as it seems.</p>
+        
+    <div class = "legend">
+        <div class = "legendContainer">
+            
+<div class = "legendStuff">  
+<p>Race:</p>
 </div>
-    <div class = "buffer"></div>
+            
+<div class = "legendStuff">  
+<div class = "legendItem" style = "background-color:#bbccee;"></div>
+<p>White</p>
+</div>
+            
+<div class = "legendStuff">  
+<div class = "legendItem" style = "background-color:#332288;"></div>
+<p>Black</p>
+</div>
+    
+<div class = "legendStuff">  
+<div class = "legendItem" style = "background-color:#44AA99;"></div>
+<p>Latino</p>
+</div>
+
+<div class = "legendStuff">  
+<div class = "legendItem" style = "background-color:#ddcc77;"></div>
+<p>Indian</p>
+</div>
+
+<div class = "legendStuff">  
+<div class = "legendItem" style = "background-color:#882255;"></div>
+<p>Asian</p>
+</div>
+
+    
+    </div>
+    </div>
+        </div>
+    </div>
+
+ 
+<!-- filter buttons-->
+    <div>
+<h4>Filter Buttons</h4>
+<div class = "filterContainer">
 
 <div class = button>  
 <div class = "filterButton" id = "female" onclick = "switchButton('female')"></div>
@@ -36,7 +74,7 @@
 <p>Male</p>
     <div></div>
 </div>
-    
+   <div class = "buffer"></div> 
 <div class = button>  
 <div class = "filterButton" id = "white" onclick = "switchButton('white')"></div>
 <p>White</p>
@@ -62,7 +100,7 @@
 <p>Asian</p>
 </div>
     
-    </div>
+    </div></div>
 
 </div>
 

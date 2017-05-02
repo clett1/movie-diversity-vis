@@ -4,6 +4,8 @@ var movieData;
 var topStuff = document.getElementById("everything");
 console.log(topStuff.offsetHeight);
 
+var raceArray = ["white", "black", "indian", "asian", "latino"];
+
 var checkImage = new Image();
 
 checkImage.onload = function() {
@@ -12,13 +14,13 @@ checkImage.onload = function() {
 checkImage.src = 'checkMark.png';
 
 //this object represents which filters are on and off... Originally they are all on
-var filterSwitches = {all: true, female: false, male: false, white: false, black: false, latino: false, indian: false, asian: false}
+var filterSwitches = {female: true, male: true, white: true, black: true, latino: true, indian: true, asian: true}
 
 
 //total svg margin
 var margin = {top: 40, right: 60, bottom: 40, left: 40},
-    width = 1400,
-    height = 800;
+    width = 1200,
+    height = 650;
 
 //circles margin
 var circlesMargin = {top: 30, right: 300, bottom: 30, left: 250}
@@ -103,37 +105,24 @@ function createChart() {
     
     xAxis.scale(xScale);
     
-/*
-  // y-axis
-  svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-        .append("text")
-        .attr("class", "label")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-      . text("Movie");
-    */
     
     // ROI graph title
     var roiTitle = svg.append("text")
                     .attr("x", margin.left)
                     .attr("y", -15)
                     .attr("class", "graph-title")
-                    .style("text-anchor", "end")
+                    //.style("text-anchor", "end")
                     .text("ROI")
     // TODO: On click function shows info
     
     //Character data graph title
     var charTitle = svg.append("text")
                     .attr("x", function(d){
-                        return width-650
+                        return margin.left + circlesMargin.left;
                     })
                     .attr("y", -15)
                     .attr("class", "graph-title")
-                    .style("text-anchor", "end")
+                    //.style("text-anchor", "end")
                     .text("Character's Percent of Words Spoken in Film")
     
     //Filmmaker graph title
@@ -177,7 +166,7 @@ function createChart() {
     // x-axis
     svg.append("g")
         //.attr("class", "x axis")
-        .attr("transform", "translate(0," + 720 + ")")
+        .attr("transform", "translate(0,575)")
         .call(xAxis)
         .append("text")
         .attr("class", "label")
@@ -240,11 +229,11 @@ function createChart() {
         .append("text")
         //.attr("class", "ro")
         .text(function(d) {
-          return d.value["roi"]/100 + ' x';
+          return d.value["roi"]/100 + '%';
         })
         .attr("text-anchor", "middle")
         .attr("x", function(d, i) {
-          return roiScale(d.value["roi"]) + 15;
+          return roiScale(d.value["roi"]) + 20;
         })
         .attr("y", function(d, i) {
           return yScale(d.value["roi"]) + 15;
@@ -268,10 +257,10 @@ function createChart() {
 		return yScale(d.value["roi"]) - 30;
 	  })
 	  .attr("width", function(d) {
-		return 50;
+		return 45;
 	  })
 	  .attr("height", function(d) {
-		return 60;
+		return 55;
 	  });
     
     updateChart();
@@ -288,7 +277,7 @@ function switchButton(button) {
         //if all button is on
         if(filterSwitches[button]) {
             //All is true turn it off
-            document.getElementById(button).style.backgroundColor = "#eee";
+            document.getElementById(button).style.backgroundColor = "#fff";
             
             filterSwitches[button] = false;
             clearChart();
@@ -300,7 +289,7 @@ function switchButton(button) {
             
             //turn off the rest of the buttons
             for(var i = 0; i < buttons.length; i++) {
-                buttons[i].style.backgroundColor = "#eee";
+                buttons[i].style.backgroundColor = "#fff";
             }   
             
             //make all other filters false
@@ -330,7 +319,7 @@ function switchButton(button) {
             //All is on. turn it off
             
             //console.log("helloooooo");
-            document.getElementById("all").style.backgroundColor = "#eee";
+            document.getElementById("all").style.backgroundColor = "#fff";
             
             filterSwitches.all = false;
         }
@@ -338,7 +327,7 @@ function switchButton(button) {
         //Turn on the pressed button
         if(filterSwitches[button]) {
             //if button is on, turn it off
-            document.getElementById(button).style.backgroundColor = "#eee";
+            document.getElementById(button).style.backgroundColor = "#fff";
             
             filterSwitches[button] = false;
             
@@ -357,65 +346,6 @@ function switchButton(button) {
         
     }
 }
-
-/*Function to update the chart based on which filter was clicked
-*   filter: string of which filter was passed in
-
-function filterFunction(filter) {
-     
-    //this array holds the selected filters
-    var selectedFilters = []
-    
-    
-
-    if(filter == "all") {
-        
-        //All is clicked
-        
-        
-        //turn other buttons off; turn all on
-        
-        clearChart();
-        updateChart(selecterFilters)
-        
-    } else {  
-        
-       // .attr("transform", "translate(0," + (height - 50) + ")")
-        
-        //turn off all button
-        
-                
-        //Check whether this switch is on or off.
-        if(filterSwitches[filter]) {
-            //if this filter is true (on), turn it off
-            filterSwitches[filter] = false;
-        } else {
-            //turn this switch on
-            filterSwitches[filter] = true;
-        }
-
-        //iterate through object to return true
-        for (var key in filterSwitches) {
-            /*if(!filterSwitches.hasOwnProperty(key)) continue;
-
-            if(filterSwitches[key]) {
-                //trueFilters.push(key);
-            }
-
-        }
-        
-        clearChart();
-        updateChart(filterSwitches);  
-        
-    }
-
-        console.log(filter + " is now " + filterSwitches[filter]);
-        //console.log("true keys " + trueFilters);
-        //Now update the chart to reflect the changes 
-       // updateChart(filter);
-        
-}
-*/
 
 /*
 *   Update chart
@@ -441,22 +371,40 @@ function updateChart(selectedFilter) {
             if(filterSwitches.all == true) {
                 //place all data
                 return d;
-            } else {
+            } else if (filterSwitches.female == true || filterSwitches.male == true){
+                //male or female or both selected
                 
-                for (var key in filterSwitches) {
-                    if(!filterSwitches.hasOwnProperty(key)) continue;
+                /*
+                *  This block of code iterates through an array of races in the chart
+                *  If a race filter is on, only return characters fitting race AND gender 
+                *  If NO race filters are on, return only matched genders
+                */
+                var trueRaces = 0;
+                //check and see if any races are checked
+                for(var i = 0; i < raceArray.length; i++) {
                     
-                    if(filterSwitches[key]) {
-                        //for the true filter keys, return data
-                        if(d.GENDER == key || d.RACE == key) {
-                            
-                            /*if(filterSwitches.female == true && filterSwitches[d.RACE])
-                             */   
-                                return d;
-                            
-                        }
+                    if (filterSwitches[raceArray[i]]) {
+                        //if this race filter is on
+                        trueRaces++;    //add to the true races
                     }
-
+                    
+                }
+                
+                if(trueRaces == 0) {
+                    if(filterSwitches[d.GENDER]) {
+                        return d;
+                    }
+                } else {
+                    if(filterSwitches[d.GENDER] && filterSwitches[d.RACE]) {
+                        return d;
+                    }
+                }
+                
+            } else if (!filterSwitches.female && !filterSwitches.male) {
+                //neither male or female are selected
+                if(filterSwitches[d.RACE]) {
+                    //return everything with the correct race
+                    return d;
                 }
             }
         })
@@ -548,7 +496,7 @@ function updateChart(selectedFilter) {
             //SHOW TOOL TIP
             //set x and y
 
-            $("#tooltip").css("left", d.x + 'px');
+            $("#tooltip").css("left", d.x + margin.left + 'px');
             $("#tooltip").css("top", d.y + topStuff.offsetHeight - 80 +'px');
             $("#tooltip").fadeIn(200); 
         })
