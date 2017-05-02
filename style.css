@@ -1,4 +1,43 @@
-
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    
+}
+.buffer {
+    width: 5%;
+}
+.filterContainer {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    align-content: space-between;
+    justify-content: space-between;
+}
+.button {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.characterCircle {
+    opacity: 1.0;
+}
+.filterButton {
+    border-radius: 50%;
+    border: 2px solid gray;
+    background-color: #eee;
+    width: 15px;
+    height: 15px;
+}
+.filterButton:hover {
+    background-color: lightgray;
+}
+.filterButtonActive {
+    
+}
 #tooltip {
     background-color: #F7F7F7;
     border:solid 1px #888888;
@@ -31,6 +70,16 @@
     margin-bottom: 10px;
 }
 
+.graph-title {
+    font-family: "Verdana", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    fill: black;
+}
+.graph-title:hover{
+    fill:black;
+}
+
 .rect1 {
     fill: black;
 }
@@ -39,8 +88,11 @@
     fill: #117733;
 }
 .roiText {
-    
+
 }
 .filmMakers {
     stroke-width: 3;
+}
+.label {
+    fill: black;
 }

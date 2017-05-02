@@ -2,13 +2,17 @@
 var characterData;
 var movieData;
 
+//this object represents which filters are on and off... Originally they are all on
+var filterSwitches = {all: true, female: false, male: false, white: false, black: false, latino: false, indian: false, asian: false}
+
+
 //total svg margin
-var margin = {top: 40, right: 60, bottom: 30, left: 40},
+var margin = {top: 40, right: 60, bottom: 40, left: 40},
     width = 1300,
-    height = 700;
+    height = 800;
 
 //circles margin
-var circlesMargin = {top: 20, right: 300, bottom: 30, left: 200}
+var circlesMargin = {top: 30, right: 300, bottom: 30, left: 200}
 
 //xScale setup
 var xScale = d3.scaleLinear()
@@ -41,21 +45,27 @@ function analyze(error, character, movie) {
 
     characterData = character;
     movieData = movie; 
-    
+
     createChart();
-   
 }
 
 /*
 *   This is where the main chart is created
 */
-function createChart() {
 
+function createChart() {
+    // add the graph canvas to the body of the webpage
+    var svg = d3.select("body").append("svg")
+        .attr("id", "mainChart")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
     //creates array wordCountPercent to set x scale domain
     var wordCountPercent = characterData.map(function(d) {
         return (d.CHARACTER_WORDS / d.TOTAL_MOVIE_WORDS) * 100;
     });
-  
     
     //create array movieROI to set y scale domain
     var movieROI = movieData.map(function(d) {
@@ -78,34 +88,12 @@ function createChart() {
     
     //y scale (total words for now until JSON is complete)
     yScale.domain(movieROI);
-    
+
     //X axis
     var xAxis = d3.axisBottom();
     
     xAxis.scale(xScale);
     
-    /*
-    //Y axis can be completed with JSON data is complete
-    var yAxis = d3.svg.axisLeft(yScale);
-    */
-    // add the graph canvas to the body of the webpage
-    var svg = d3.select("body").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
-     // x-axis
-    svg.append("g")
-        //.attr("class", "x axis")
-        .attr("transform", "translate(0," + (height - 50) + ")")
-        .call(xAxis)
-        .append("text")
-        //.attr("class", "label")
-        .attr("x", 50)
-        .attr("y", 50)
-        .style("text-anchor", "end")
-        .text("% of Words Spoken");
 /*
   // y-axis
   svg.append("g")
@@ -120,11 +108,39 @@ function createChart() {
       . text("Movie");
     */
     
+    // ROI graph title
+    var roiTitle = svg.append("text")
+                    .attr("x", margin.left)
+                    .attr("y", -15)
+                    .attr("class", "graph-title")
+                    .style("text-anchor", "end")
+                    .text("ROI")
+    // TODO: On click function shows info
+    
+    //Character data graph title
+    var charTitle = svg.append("text")
+                    .attr("x", function(d){
+                        return width-650
+                    })
+                    .attr("y", -15)
+                    .attr("class", "graph-title")
+                    .style("text-anchor", "end")
+                    .text("Character's Percent of Words Spoken in Film")
+    
+    //Filmmaker graph title
+   var makerTitle = svg.append("text")
+                    .attr("x", function(d){
+                        return width-160
+                    })
+                    .attr("y", -15)
+                    .attr("class", "graph-title")
+                    .style("text-anchor", "end")
+                    .text("Filmmakers")
+    
     /*  These are the rows for each movie
     *
     */
-    
-    var backBars = svg.selectAll("rect").data(movieROI);
+   var backBars = svg.selectAll("rect").data(movieROI);
     
     backBars = backBars.enter()
                 .append('rect')
@@ -149,43 +165,38 @@ function createChart() {
             }
         });
     
-    /*ROI BARS
-    *   rect1:  black bar
-    *   rect2:  green bar roi amount
-    */
+    // x-axis
+    svg.append("g")
+        //.attr("class", "x axis")
+        .attr("transform", "translate(0," + 720 + ")")
+        .call(xAxis)
+        .append("text")
+        .attr("class", "label")
+        .attr("x", width / 2)
+        .attr("y", 35)
+        .style("text-anchor", "end")
+        .text("% of Words Spoken");
     
     roiScale.domain([d3.min(movieROI), d3.max(movieROI)]);
     
-    var rect1 = svg.selectAll('.rect1')
-	    .data(movieData);
-    
-    rect1 = rect1
-	    .enter()
-        .append("rect")
-        .merge(rect1);
-    
-    rect1.exit().remove();
-    
-    rect1
-        .attr('class', 'rect1')
-        .attr("x", function(d, i) {
-          return 0;
-        })
-        //
-        .attr("y", function(d, i) {
-          return yScale(d.value["roi"]) - 30;
-        })
-        //
-        .attr("width", function(d) {
-            //create scale for this
-          return roiScale(1 / d.value["roi"]);
-        })
-        //
-        .attr("height", function(d) {
-          return 20;
-        });
+    var movieTitleTexts = svg.selectAll(".text")
+	  .data(movieData)
+	  .enter()
+	  .append("text")
+	  .text(function(d) {
+		return d.key;
+	  })
+	  .attr("text-anchor", "right")
+	  .attr("x", function(d, i) {
+		return 0;
+	  })
+	  .attr("y", function(d, i) {
+		return yScale(d.value["roi"]) - 10;
+	  })
+	  .attr("font-family", "sans-serif")
+	  .attr("font-size", "11px")
+	  .attr("fill", "black");
 
-   //rect2: ROI times rectangle
     var rect2 = svg.selectAll('.rect2')
 	    .data(movieData);
     
@@ -201,11 +212,9 @@ function createChart() {
         .attr("x", function(d, i) {
           return 0;
         })
-        //
         .attr("y", function(d, i) {
           return yScale(d.value["roi"]);
         })
-        //
         .attr("width", function(d) {
             return roiScale(d.value["roi"]);
         })
@@ -220,29 +229,197 @@ function createChart() {
         .data(movieData)
         .enter()
         .append("text")
+        //.attr("class", "ro")
         .text(function(d) {
           return d.value["roi"] + 'x';
         })
-        //
         .attr("text-anchor", "middle")
-        //
         .attr("x", function(d, i) {
-          return 60;
+          return roiScale(d.value["roi"]) + 15;
         })
-        //
         .attr("y", function(d, i) {
-          return yScale(d.value["roi"]) + 10;
+          return yScale(d.value["roi"]) + 15;
         })
-        //
         .attr("font-family", "sans-serif")
         .attr("font-size", "11px")
-        //.attr("fill", "white");
+        .attr("fill", "black");
+    
+	var images = svg.selectAll('image')
+	  .data(movieData)
+	  .enter()
+	  .append("svg:image")
+	  .attr('xlink:href', function(d, i) {
+		return 'posters/' + i + '.jpg';
+	  })
+	  .attr("x", function(d, i) {
+		return 130;
+	  })
+	  .attr("y", function(d, i) {
+		// return i * 100;
+		return yScale(d.value["roi"]) - 30;
+	  })
+	  .attr("width", function(d) {
+		return 50;
+	  })
+	  .attr("height", function(d) {
+		return 60;
+	  });
+    
+    updateChart();
+}
+
+function switchButton(button) {
+    console.log(button + " button was pressed :" + filterSwitches[button]);
+    
+    var trueFilters = [];
+    
+    //If All button is pressed
+    if (button == "all") {
+        
+        //if all button is on
+        if(filterSwitches[button]) {
+            //All is true turn it off
+            document.getElementById(button).style.backgroundColor = "#eee";
+            
+            filterSwitches[button] = false;
+            clearChart();
+            
+        } else {
+         
+            //clear the rest of the buttons
+            var buttons = document.getElementsByClassName("filterButton");
+            
+            //turn off the rest of the buttons
+            for(var i = 0; i < buttons.length; i++) {
+                buttons[i].style.backgroundColor = "#eee";
+            }   
+            
+            //make all other filters false
+            for (var key in filterSwitches) {
+                if(!filterSwitches.hasOwnProperty(key)) continue;
+
+                if(filterSwitches[key]) {
+                    filterSwitches[key] = false;
+                }
+
+            }
+            
+            //turn all filter to true
+            filterSwitches[button] = true;
+            
+            //turn on 'all' button
+            document.getElementById(button).style.backgroundColor = "gray";
+            
+            //clear and update chart
+            clearChart();
+            updateChart();
+        }
+                
+    } else {
+        //Another Button is pressed
+        if(filterSwitches.all == true) {
+            //All is on. turn it off
+            
+            //console.log("helloooooo");
+            document.getElementById("all").style.backgroundColor = "#eee";
+            
+            filterSwitches.all = false;
+        }
+        
+        //Turn on the pressed button
+        if(filterSwitches[button]) {
+            //if button is on, turn it off
+            document.getElementById(button).style.backgroundColor = "#eee";
+            
+            filterSwitches[button] = false;
+            
+            clearChart();
+            updateChart();
+            
+        } else {
+            //button is off
+            document.getElementById(button).style.backgroundColor = "gray";
+            
+            filterSwitches[button] = true;
+            
+            clearChart();
+            updateChart();
+        }
+        
+    }
+}
+
+/*Function to update the chart based on which filter was clicked
+*   filter: string of which filter was passed in
+
+function filterFunction(filter) {
+     
+    //this array holds the selected filters
+    var selectedFilters = []
+    
+    
+
+    if(filter == "all") {
+        
+        //All is clicked
+        
+        
+        //turn other buttons off; turn all on
+        
+        clearChart();
+        updateChart(selecterFilters)
+        
+    } else {  
+        
+       // .attr("transform", "translate(0," + (height - 50) + ")")
+        
+        //turn off all button
+        
+                
+        //Check whether this switch is on or off.
+        if(filterSwitches[filter]) {
+            //if this filter is true (on), turn it off
+            filterSwitches[filter] = false;
+        } else {
+            //turn this switch on
+            filterSwitches[filter] = true;
+        }
+
+        //iterate through object to return true
+        for (var key in filterSwitches) {
+            /*if(!filterSwitches.hasOwnProperty(key)) continue;
+
+            if(filterSwitches[key]) {
+                //trueFilters.push(key);
+            }
+
+        }
+        
+        clearChart();
+        updateChart(filterSwitches);  
+        
+    }
+
+        console.log(filter + " is now " + filterSwitches[filter]);
+        //console.log("true keys " + trueFilters);
+        //Now update the chart to reflect the changes 
+       // updateChart(filter);
+        
+}
+*/
+
+/*
+*   Update chart
+*/
+function updateChart(selectedFilter) {
     
     /*CHARACTER CIRCLES
-    *   circles:  
+    *   circles: represent each character
     */
     
-    var circles = svg.selectAll("circle").data(characterData);
+    var mainChart = d3.select("#mainChart");
+        
+    var circles = mainChart.selectAll(".characterCircle").data(characterData);
     
     circles = circles.enter()
                 .append('circle')
@@ -251,6 +428,28 @@ function createChart() {
     circles.exit().remove();
     
     circles
+        .filter(function(d) {
+            if(filterSwitches.all == true) {
+                //place all data
+                return d;
+            } else {
+                
+                for (var key in filterSwitches) {
+                    if(!filterSwitches.hasOwnProperty(key)) continue;
+
+                    if(filterSwitches[key]) {
+                        //for the true filter keys, return data
+                        if(d.GENDER == key || d.RACE == key) {
+                            return d;
+                        }
+                    }
+
+                }
+            }
+        })
+        //.transition()
+        .attr("class", "characterCircles")
+        .attr("transform",  "translate(40,40)")
         .attr('cx', function(d) {  
             return xScale(d.wordsPercent);
         })
@@ -330,12 +529,12 @@ function createChart() {
             
             //SHOW TOOL TIP
             //set x and y
-            $("#tooltip").css("left", x+margin.left+'px');
-            $("#tooltip").css("top", y+margin.top-10+'px');
-            $("#tooltip").fadeIn(300);
-            
-            
+
+            $("#tooltip").css("left", x - 105 +'px');
+            $("#tooltip").css("top", y + 120 +'px');
+            $("#tooltip").fadeIn(200); 
         })
+    
         .on('mouseout', function(d) {
             //Will need to clear the hover information
             //hide tool tip
@@ -357,7 +556,7 @@ function createChart() {
         })
     });
     
-    var squares = svg.selectAll(".filmMakers").data(filmMakersArray);
+    var squares = mainChart.selectAll(".filmMakers").data(filmMakersArray);
     
     squares = squares.enter()
                 .append('rect')
@@ -374,6 +573,7 @@ function createChart() {
             //scale ROI
             return yScale(d[1]); 
         })
+        .attr("transform",  "translate(40,40)")
         .attr('width', function(d) {
             return 12;  
         })
@@ -415,13 +615,41 @@ function createChart() {
             }
         })
         .attr('stroke-width', 2)
+        .on('mouseover', function(d) {
+            //Will need to display the hover information
+              console.log(d[0].name + " - " + d[0].role);
+            
+            //GET COORDINATES of mouse
+            var coordinates = [0,0];
+            coordinates = d3.mouse(this);
+            var x = coordinates[0];
+            var y = coordinates[1];
+               
+            //SET VALUES in tooltip from d
+            $('#tooltip .char').text(d[0].name); //title
+            $('#tooltip .total-words').text("Role: " + d[0].role); 
+            $('#tooltip .gender').text(d[0].gender); //gender
+            $('#tooltip .race').text(d[0].race);
+            
+            //SHOW TOOL TIP
+            //set x and y
+
+            $("#tooltip").css("left", x - 105 +'px');
+            $("#tooltip").css("top", y + 120 +'px');
+            $("#tooltip").fadeIn(200); 
+        })
+    
+        .on('mouseout', function(d) {
+            //Will need to clear the hover information
+            //hide tool tip
+            document.getElementById("tooltip").style.display = 'none';
+        });
     
 }
 
-function updateChart(selected) {
-    
+function clearChart() {
+    d3.selectAll(".characterCircles").remove();
 }
-
 
 
 /*      
