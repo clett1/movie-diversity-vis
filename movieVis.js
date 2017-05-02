@@ -7,9 +7,9 @@ var filterSwitches = {all: true, female: false, male: false, white: false, black
 
 
 //total svg margin
-var margin = {top: 40, right: 60, bottom: 30, left: 40},
+var margin = {top: 40, right: 60, bottom: 40, left: 40},
     width = 1300,
-    height = 700;
+    height = 800;
 
 //circles margin
 var circlesMargin = {top: 30, right: 300, bottom: 30, left: 200}
@@ -94,17 +94,7 @@ function createChart() {
     
     xAxis.scale(xScale);
     
-    // x-axis
-    svg.append("g")
-        //.attr("class", "x axis")
-        .attr("transform", "translate(0," + (height - 50) + ")")
-        .call(xAxis)
-        .append("text")
-        //.attr("class", "label")
-        .attr("x", 50)
-        .attr("y", 50)
-        .style("text-anchor", "end")
-        .text("% of Words Spoken");
+    
     
         var backBars = svg.selectAll("rect").data(movieROI);
     
@@ -130,6 +120,18 @@ function createChart() {
                 return "#fff";
             }
         });
+    
+    // x-axis
+    svg.append("g")
+        //.attr("class", "x axis")
+        .attr("transform", "translate(0," + 720 + ")")
+        .call(xAxis)
+        .append("text")
+        .attr("class", "label")
+        .attr("x", width / 2)
+        .attr("y", 35)
+        .style("text-anchor", "end")
+        .text("% of Words Spoken");
     
     roiScale.domain([d3.min(movieROI), d3.max(movieROI)]);
     
@@ -183,12 +185,13 @@ function createChart() {
         .data(movieData)
         .enter()
         .append("text")
+        //.attr("class", "ro")
         .text(function(d) {
           return d.value["roi"] + 'x';
         })
         .attr("text-anchor", "middle")
         .attr("x", function(d, i) {
-          return 60;
+          return roiScale(d.value["roi"]) + 15;
         })
         .attr("y", function(d, i) {
           return yScale(d.value["roi"]) + 15;
@@ -400,6 +403,7 @@ function updateChart(selectedFilter) {
                 }
             }
         })
+        //.transition()
         .attr("class", "characterCircles")
         .attr("transform",  "translate(40,40)")
         .attr('cx', function(d) {  

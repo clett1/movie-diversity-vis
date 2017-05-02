@@ -78,8 +78,11 @@ body {
     fill: green;
 }
 .roiText {
-    
+
 }
 .filmMakers {
     stroke-width: 3;
+}
+.label {
+    fill: black;
 }
