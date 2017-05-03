@@ -1,8 +1,7 @@
 @import url(reset.css);
 @import url('https://fonts.googleapis.com/css?family=PT+Serif|Roboto|Shrikhand|Open Sans');
-    
 .clip-circle {
-  clip-path: circle(3rem at center);
+    clip-path: circle(3rem at center);
 }
 
 h1 {
@@ -12,6 +11,7 @@ h1 {
     margin-top: -3rem;
     margin-bottom: 2rem;
 }
+
 h2 {
     font-family: 'Open Sans', 'Helvetica', serif;
     color: #333;
@@ -21,24 +21,44 @@ h2 {
 }
 
 .wrapper {
-  background: #eee;
-  height: 100vh;
-  text-align:center;
+    background: #eee;
+    height: 100vh;
+    text-align: center;
 }
 
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#down-arrow {
+    margin-top: 1rem;
+    animation: blink 1.3s ease-in-out infinite;
+    -webkit-animation: blink 1.3s ease-in-out infinite;
+}
 
 #beige-head {
-  fill: hsla(0, 45%, 95%, 1);
+    fill: hsla(0, 45%, 95%, 1);
 }
+
 #whole-head {
-  width: 30rem;
-  height: 30rem;
-  position: relative;
-    margin-top: -1rem;
+    width: 30rem;
+    height: 30rem;
+    position: relative;
+    margin-top: -1.5rem;
 }
+
 #nose-shape {
-  fill: hsla(0, 45%, 95%, 1);
+    fill: hsla(0, 45%, 95%, 1);
 }
+
 
 /* Cleaner, but slightly less support: use "50%" as value */
 
@@ -47,57 +67,56 @@ h2 {
 }
 
 .flex-grid {
-  display: flex;
+    display: flex;
     width: 100%;
-/*  margin: 0 0 20px 0;*/
+    /*  margin: 0 0 20px 0;*/
 }
+
 .flex-grid .col {
-  flex: 1;
-  background: salmon;
-/*  padding: 20px;*/
-/*  width: 40vw;*/
-  height: 100vh;
+    flex: 1;
+    background: #ffffff;
+    /*  padding: 20px;*/
+    /*  width: 40vw;*/
+    height: 100vh;
+}
+
+#diverse-people {
+    width: 120%;
+    margin-left: -6rem;
+    margin-top: -12rem;
 }
 
 .flex-grid .col-wide {
-  flex: 1;
-  background: green;
-/*  padding: 20px;*/
-  height: 100vh;
+    flex: 1;
+    background: green;
+    /*  padding: 20px;*/
+    height: 100vh;
 }
 
 @media (max-width: 400px) {
-  .flex-grid {
-    display: block;
-    .col {
-      width: 100vw;
-      margin: 0 0 10px 0;
+    .flex-grid {
+        display: block;
+        .col {
+            width: 100vw;
+            margin: 0 0 10px 0;
+        }
+        .col-wide {
+            width: 100vw;
+            margin: 0 0 10px 0;
+        }
     }
-      .col-wide {
-      width: 100vw;
-      margin: 0 0 10px 0;
-    }
-  }
 }
-
-
-
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-
-.col-a1, .col-a2 {
-    background: green;
-}
 
 body {
-/*    display: flex;*/
+    /*    display: flex;*/
     flex-direction: column;
     align-items: center;
     font-family: "Verdana", sans-serif;
-    
 }
 
 #right-eye {
@@ -107,6 +126,7 @@ body {
     transform: scale(.8);
     z-index: 2;
 }
+
 #left-eye {
     position: relative;
     top: 24rem;
@@ -115,16 +135,18 @@ body {
     z-index: 2;
 }
 
-
 .buffer {
     width: 5%;
 }
+
 p {
     font-size: 9px;
 }
+
 .introPara {
-   font-size: 12px; 
+    font-size: 12px;
 }
+
 #everything {
     display: flex;
     flex-direction: row;
@@ -134,9 +156,11 @@ p {
     height: 200px;
     width: 1000px;
 }
+
 .intro {
     width: 60%;
 }
+
 .filterContainer {
     display: flex;
     flex-direction: row;
@@ -145,10 +169,12 @@ p {
     align-content: space-between;
     justify-content: space-between;
 }
+
 .legend {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
+
 .legendContainer {
     display: flex;
     flex-direction: row;
@@ -157,22 +183,25 @@ p {
 }
 
 .button {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
 }
+
 .legendStuff {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
 }
+
 .characterCircle {
     opacity: 1.0;
 }
+
 .filterButton {
     border-radius: 30%;
     border: 1px solid gray;
@@ -180,7 +209,7 @@ p {
     width: 20px;
     height: 20px;
     background-image: url('checkMark.png');
-    background-position: center; 
+    background-position: center;
 }
 
 .legendItem {
@@ -190,16 +219,17 @@ p {
     height: 5px;
     margin-bottom: -8px;
 }
+
 .filterButton:hover {
     border: 1px solid red;
 }
-.filterButtonActive {
-    
-}
+
+.filterButtonActive {}
+
 #tooltip {
     background-color: #333;
-    border:solid 1px #888888;
-    height:auto;
+    border: solid 1px #888888;
+    height: auto;
     width: auto;
     padding: 5px;
     position: absolute;
@@ -226,7 +256,7 @@ p {
     font-family: "Gil Sans", sans-serif;
     font-size: 11px;
     font-weight: 300;
-    font-style:italic;
+    font-style: italic;
     margin-bottom: 10px;
 }
 
@@ -236,8 +266,9 @@ p {
     font-weight: 600;
     fill: black;
 }
-.graph-title:hover{
-    fill:black;
+
+.graph-title:hover {
+    fill: black;
 }
 
 .rect1 {
@@ -247,12 +278,13 @@ p {
 .rect2 {
     fill: #117733;
 }
-.roiText {
 
-}
+.roiText {}
+
 .filmMakers {
     stroke-width: 3;
 }
+
 .label {
     fill: black;
 }

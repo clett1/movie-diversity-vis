@@ -6,7 +6,7 @@
     <title>Movie Diversity Visualization</title>
     <link rel="stylesheet" href="style.css" />
     <!-- jQuery library for Bootstrap-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script type="application/javascript" src="movieVis.js"></script>
     <script type="application/javascript" src="script.js" async></script>
@@ -18,7 +18,7 @@
 <body>
 
     <div class="wrapper">
-           <div id="head-wrapper">
+        <div id="head-wrapper">
             <div class="circle">
                 <img id="left-eye" src="https://media.giphy.com/media/wnXoQwTBJ4fsI/giphy-downsized.gif" alt="" class="clip-circle">
                 <img id="right-eye" src="https://media.giphy.com/media/wnXoQwTBJ4fsI/giphy-downsized.gif" alt="" class="clip-circle">
@@ -77,25 +77,23 @@
                 </g>
             </svg>
         </div>
+        <a href="#page2"><svg id="down-arrow" xmlns="http://www.w3.org/2000/svg" width="68" height="39" viewBox="0 0 68 39" version="1">
+            <title> Path 4</title>
+            <desc> Created with Sketch.</desc>
+            <g style="fill-rule:evenodd;fill:none;stroke-linecap:round">
+                <g style="stroke-width:5;stroke:#979797">
+                    <polyline transform="translate(-371 -140)translate(405.050414 159.007763)scale(1 -1)translate(-405.050414 -159.007763)" points="374 174.5 405 143.5 436.1 174.6" />
+                </g>
+            </g>
+        </svg></a>
     </div>
 
-    <div class="flex-grid">
-        <div class="col col-b2">Slide 2 Left</div>
-        <div class="col col-b2">Slide 2 Right</div>
+    <div class="flex-grid" id="page2">
+        <div class="col">
+<!--        <h2>Between Hidden Figures, Moonlight, and Lion, 2016 seemed like a great year for diversity. But how diverse was it really?</h2>-->
+        <img id="diverse-people" src="faces-div.png" alt="">
+        </div>
     </div>
-    <div class="flex-grid">
-        <div class="col col-c1">This little piggy went to market.</div>
-        <div class="col col-c2">This little piggy had roast beef.</div>
-    </div>
-    <div class="flex-grid">
-        <div class="col col-d1">This little piggy went to market.</div>
-        <div class="col col-d2">This little piggy had roast beef.</div>
-    </div>
-    <div class="flex-grid">
-        <div class="col col-e1">This little piggy went to market.</div>
-        <div class="col col-e2">This little piggy had roast beef.</div>
-    </div>
-
 
     <h1>Movie Diversity Visualization</h1>
     <p>Visualization in HCI Data Visualization final project.. blah blah</p>
