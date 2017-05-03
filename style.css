@@ -1,3 +1,54 @@
+@import url(reset.css);
+    
+.blue {
+    background: green;
+}
+
+.flex-grid {
+  display: flex;
+    width: 100%;
+/*  margin: 0 0 20px 0;*/
+}
+.flex-grid .col {
+  flex: 1;
+  background: salmon;
+/*  padding: 20px;*/
+/*  width: 40vw;*/
+  height: 100vh;
+}
+
+.flex-grid .col-wide {
+  flex: 1;
+  background: green;
+/*  padding: 20px;*/
+  height: 100vh;
+}
+
+@media (max-width: 400px) {
+  .flex-grid {
+    display: block;
+    .col {
+      width: 100vw;
+      margin: 0 0 10px 0;
+    }
+      .col-wide {
+      width: 100vw;
+      margin: 0 0 10px 0;
+    }
+  }
+}
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+.col-a1, .col-a2 {
+    background: green;
+}
+
 body {
     display: flex;
     flex-direction: column;

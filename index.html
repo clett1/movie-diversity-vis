@@ -4,28 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Diversity Visualization</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
     <!-- jQuery library for Bootstrap-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script type="application/javascript" src="movieVis.js"></script>
+    <script type="application/javascript" src="script.js" async></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 
 <body>
-<h1>Movie Diversity Visualization</h1>
-<p>Visualization in HCI Data Visualization final project.. blah blah</p> 
-<!-- filter buttons-->
-    <div id = "filterButton">
+
+
+
+    <div class="flex-grid">
+        <div class="col-wide">Slide 1
+            <button id="test-button">Hello</button>
+        </div>
+    </div>
+    <div class="flex-grid">
+        <div class="col col-b2">Slide 2 Left</div>
+        <div class="col col-b2">Slide 2 Right</div>
+    </div>
+    <div class="flex-grid">
+        <div class="col col-c1">This little piggy went to market.</div>
+        <div class="col col-c2">This little piggy had roast beef.</div>
+    </div>
+    <div class="flex-grid">
+        <div class="col col-d1">This little piggy went to market.</div>
+        <div class="col col-d2">This little piggy had roast beef.</div>
+    </div>
+    <div class="flex-grid">
+        <div class="col col-e1">This little piggy went to market.</div>
+        <div class="col col-e2">This little piggy had roast beef.</div>
+    </div>
+
+
+    <h1>Movie Diversity Visualization</h1>
+    <p>Visualization in HCI Data Visualization final project.. blah blah</p>
+    <!-- filter buttons-->
+    <div id="filterButton">
         <p>Filter buttons will be here</p>
         <form action="">
-<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
-<input type="checkbox" name="vehicle" value="Car">I have a car 
-<input type="submit" value="Submit">
+            <input type="checkbox" name="vehicle" value="Bike">I have a bike
+            <br>
+            <input type="checkbox" name="vehicle" value="Car">I have a car
+            <input type="submit" value="Submit">
 
-</form>
+        </form>
 
     </div>
-<!-- tooltip template -->
+    <!-- tooltip template -->
     <div id="tooltip">
         <div class="title char"></div>
         <div class="info movie"></div>
@@ -35,6 +66,7 @@
         <div class="info race"></div>
         <div class="info orientation"></div>
     </div>
-    
+
 </body>
+
 </html>
