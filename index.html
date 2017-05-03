@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Movie Diversity Visualization</title>
     <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet"> 
     <!-- jQuery library for Bootstrap-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
@@ -22,9 +23,27 @@
     <div class = "legend">
         <div class = "legendContainer">
             
-<div class = "legendStuff">  
-<p>Race:</p>
+
+<!--<div class = "legendStuff">  
+<p style="font-weight: bold">Gender:</p>
+</div>-->
+
+<div class = "legendStuff" id = "femaleLegend">  
+<div class = "legendGender"></div>
+<p id="fL">Female</p>
 </div>
+    
+<div class = "legendStuff" id = "maleLegend">  
+<div class = "legendGender"></div>
+<p id="mL">Male</p>
+</div>
+    
+
+            
+<!--<div class = "legendStuff">  
+<p style="font-weight: bold">Race:</p>
+</div>-->
+            
             
 <div class = "legendStuff">  
 <div class = "legendItem" style = "background-color:#bbccee;"></div>

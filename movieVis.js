@@ -229,7 +229,7 @@ function createChart() {
         .append("text")
         //.attr("class", "ro")
         .text(function(d) {
-          return d.value["roi"]/100 + '%';
+          return d.value["roi"]/100 + 'x';
         })
         .attr("text-anchor", "middle")
         .attr("x", function(d, i) {
