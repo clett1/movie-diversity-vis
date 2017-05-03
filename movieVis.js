@@ -128,12 +128,12 @@ function createChart() {
     //Filmmaker graph title
    var makerTitle = svg.append("text")
                     .attr("x", function(d){
-                        return width-160
+                        return width-180;
                     })
                     .attr("y", -10)
                     .attr("class", "graph-title")
                     .style("text-anchor", "end")
-                    .text("Filmmakers")
+                    .text("Filmmakers");
     
     /*  These are the rows for each movie
     *
@@ -306,7 +306,7 @@ function switchButton(button) {
             filterSwitches[button] = true;
             
             //turn on 'all' button
-            document.getElementById(button).style.backgroundColor = "gray";
+            document.getElementById(button).style.backgroundColor = "#333";
             
             //clear and update chart
             clearChart();
@@ -336,7 +336,7 @@ function switchButton(button) {
             
         } else {
             //button is off
-            document.getElementById(button).style.backgroundColor = "gray";
+            document.getElementById(button).style.backgroundColor = "#333";
             
             filterSwitches[button] = true;
             
@@ -494,8 +494,8 @@ function updateChart(selectedFilter) {
             //set x and y
 
             $("#tooltip").css("left", d.x + margin.left + 'px');
-            $("#tooltip").css("top", d.y + topStuff.offsetHeight - 80 +'px');
-            $("#tooltip").fadeIn(200); 
+            $("#tooltip").css("top", d.y + topStuff.offsetHeight - 95 +'px');
+            $("#tooltip").fadeIn(100); 
         })
     
         .on('mouseout', function(d) {
@@ -646,7 +646,7 @@ function updateChart(selectedFilter) {
             //set x and y
 
             $("#tooltip").css("left", d.x +'px');
-            $("#tooltip").css("top", d.y + 125 +'px');
+            $("#tooltip").css("top", d.y + 105 +'px');
             $("#tooltip").fadeIn(200); 
         })
     
