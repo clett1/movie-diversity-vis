@@ -23,7 +23,7 @@ p {
     justify-content: space-between;
     align-items: center;
     height: 200px;
-    width: 1000px;
+    width: 1100px;
 }
 .intro {
     width: 60%;
@@ -43,7 +43,7 @@ p {
 .legendContainer {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 80%;
     justify-content: space-between;
 }
 
@@ -85,8 +85,8 @@ p {
 .legendGender {
    width: 20px;
    height: 20px;
-   padding-left: 10px;
-   padding-right: 10px;
+   padding-left: 8px;
+   padding-right: 8px;
     
 }
 
