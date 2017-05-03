@@ -523,9 +523,9 @@ function updateChart(selectedFilter) {
     
     //Open movie data, add each filmmaker to the array with the movie's ROI
     movieData.forEach(function(d) {
-        d.value["filmMakers"].forEach(function(m) { 
+        d.value["filmMakers"].forEach(function(m, i) { 
             //Each item in filmMakersArray will be a 2-item array 0: person 1: roi
-            filmMakersArray.push([m, d.value["roi"]]);
+            filmMakersArray.push([m, d.value["roi"], i]);
         })
     });
     
@@ -538,12 +538,52 @@ function updateChart(selectedFilter) {
     squares.exit().remove();
     
     squares
+        /*.filter(function(d) {
+            if (filterSwitches.female == true || filterSwitches.male == true){
+                //male or female or both selected
+                
+                /*
+                *  This block of code iterates through an array of races in the chart
+                *  If a race filter is on, only return characters fitting race AND gender 
+                *  If NO race filters are on, return only matched genders
+                
+                var trueRaces = 0;
+                //check and see if any races are checked
+                for(var i = 0; i < raceArray.length; i++) {
+                    
+                    if (filterSwitches[raceArray[i]]) {
+                        //if this race filter is on
+                        trueRaces++;    //add to the true races
+                    }
+                    
+                }
+                
+                if(trueRaces == 0) {
+                    if(filterSwitches[d[0].gender]) {
+                        return d;
+                    }
+                } else {
+                    if(filterSwitches[d[0].gender] && filterSwitches[d[0].race]) {
+                        return d;
+                    }
+                }
+                
+            } else if (!filterSwitches.female && !filterSwitches.male) {
+                //neither male or female are selected
+                if(filterSwitches[d[0].race]) {
+                    //return everything with the correct race
+                    return d;
+                }
+            }
+        })*/
         .attr('x', function(d, i) {
             //There may need to be a scale for this
-            return (width - 250) + (i%7)*25;
+            d.x = (width - 250) + (d[2])*25;
+            return (width - 250) + (d[2])*25;
         })
         .attr('y', function(d, i) {
             //scale ROI
+            d.y = yScale(d[1]) + 40;
             return yScale(d[1]); 
         })
         .attr("transform",  "translate(40,40)")
@@ -607,8 +647,8 @@ function updateChart(selectedFilter) {
             //SHOW TOOL TIP
             //set x and y
 
-            $("#tooltip").css("left", x - 105 +'px');
-            $("#tooltip").css("top", y + 120 +'px');
+            $("#tooltip").css("left", d.x +'px');
+            $("#tooltip").css("top", d.y + 125 +'px');
             $("#tooltip").fadeIn(200); 
         })
     
