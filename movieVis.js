@@ -368,10 +368,7 @@ function updateChart(selectedFilter) {
     
     circles
         .filter(function(d) {
-            if(filterSwitches.all == true) {
-                //place all data
-                return d;
-            } else if (filterSwitches.female == true || filterSwitches.male == true){
+           if (filterSwitches.female == true || filterSwitches.male == true){
                 //male or female or both selected
                 
                 /*
@@ -538,7 +535,7 @@ function updateChart(selectedFilter) {
     squares.exit().remove();
     
     squares
-        /*.filter(function(d) {
+        .filter(function(d) {
             if (filterSwitches.female == true || filterSwitches.male == true){
                 //male or female or both selected
                 
@@ -546,7 +543,7 @@ function updateChart(selectedFilter) {
                 *  This block of code iterates through an array of races in the chart
                 *  If a race filter is on, only return characters fitting race AND gender 
                 *  If NO race filters are on, return only matched genders
-                
+                */
                 var trueRaces = 0;
                 //check and see if any races are checked
                 for(var i = 0; i < raceArray.length; i++) {
@@ -575,7 +572,8 @@ function updateChart(selectedFilter) {
                     return d;
                 }
             }
-        })*/
+        })
+        .attr('class', "filmMakers")
         .attr('x', function(d, i) {
             //There may need to be a scale for this
             d.x = (width - 250) + (d[2])*25;
@@ -667,6 +665,7 @@ function updateChart(selectedFilter) {
 
 function clearChart() {
     d3.selectAll(".characterCircles").remove();
+    d3.selectAll(".filmMakers").remove();
 }
 
 
