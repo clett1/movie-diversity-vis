@@ -1,5 +1,47 @@
 @import url(reset.css);
+@import url('https://fonts.googleapis.com/css?family=PT+Serif|Roboto|Shrikhand|Open Sans');
     
+.clip-circle {
+  clip-path: circle(3rem at center);
+}
+
+h1 {
+    font-family: 'Shrikhand', 'Helvetica', sans-serif;
+    color: #333;
+    font-size: 3rem;
+    margin-top: -3rem;
+    margin-bottom: 2rem;
+}
+h2 {
+    font-family: 'Open Sans', 'Helvetica', serif;
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+}
+
+.wrapper {
+  background: #eee;
+  height: 100vh;
+  text-align:center;
+}
+
+
+#beige-head {
+  fill: hsla(0, 45%, 95%, 1);
+}
+#whole-head {
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+    margin-top: -1rem;
+}
+#nose-shape {
+  fill: hsla(0, 45%, 95%, 1);
+}
+
+/* Cleaner, but slightly less support: use "50%" as value */
+
 .blue {
     background: green;
 }
@@ -45,17 +87,35 @@
   box-sizing: border-box;
 }
 
+
 .col-a1, .col-a2 {
     background: green;
 }
 
 body {
-    display: flex;
+/*    display: flex;*/
     flex-direction: column;
     align-items: center;
     font-family: "Verdana", sans-serif;
     
 }
+
+#right-eye {
+    position: relative;
+    top: 24rem;
+    left: -4rem;
+    transform: scale(.8);
+    z-index: 2;
+}
+#left-eye {
+    position: relative;
+    top: 24rem;
+    left: 4rem;
+    transform: scale(.8);
+    z-index: 2;
+}
+
+
 .buffer {
     width: 5%;
 }
