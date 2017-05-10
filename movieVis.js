@@ -660,6 +660,8 @@ function updateChart(selectedFilter) {
             //hide tool tip
             document.getElementById("tooltip").style.display = 'none';
         });
+
+    
     
 }
 
