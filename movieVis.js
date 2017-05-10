@@ -38,8 +38,8 @@ var roiScale = d3.scaleLinear()
                     .range([10, circlesMargin.left - 100]);
 
 d3.queue()
-  .defer(d3.csv, "/data/CharacterData.csv")
-  .defer(d3.json, "/data/movieData.json")
+  .defer(d3.csv, "data/CharacterData.csv")
+  .defer(d3.json, "data/movieData.json")
   .await(analyze);
 
 function analyze(error, character, movie) {
