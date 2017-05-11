@@ -112,6 +112,10 @@ function createChart() {
                     .attr("y", -10)
                     .attr("class", "graph-title")
                     //.style("text-anchor", "end")
+                    .attr("x", 175)
+                    .attr("y", -15)
+                    .attr("class", "graph-title")
+                    .style("text-anchor", "end")
                     .text("Return on Investment")
     // TODO: On click function shows info
     
