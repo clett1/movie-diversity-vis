@@ -4,127 +4,298 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Diversity Visualization</title>
-    <link rel="stylesheet" href="style.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css" />
     <!-- jQuery library for Bootstrap-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
-    
+    <script type="application/javascript" src="movieVis.js"></script>
+    <script type="application/javascript" src="script.js" async></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    
-<div id = "everything">
-<div>
-    <div class = "intro">
-    <h2>Movie Diversity Visualization</h2>
-    <p style = "font-size: 12px">Below is a chart visualizing the diversity of 10 popular movies of 2016. Some were celebrated for their perceived diversity, but upon further investigation we discovered that representation may not be as diverse as it seems.</p>
-        
-    <div class = "legend">
-        <div class = "legendContainer">
-            
+    <div id="#top" class="wrapper">
+        <div id="head-wrapper">
+            <div class="circle">
+                <!--
+                <svg width="860" height="160">
+                    <defs>
+                        <mask id="image-mask" x="0" y="0" width="1" height="1">
+                            <image id="eye" width="800" height="279" xlink:href="https://media.giphy.com/media/wnXoQwTBJ4fsI/giphy-downsized.gif" /> </mask>
+                    </defs>
 
-<!--<div class = "legendStuff">  
+                    <g mask="url(#image-mask)">
+                        <circle cx="220" cy="80" r="80" />
+
+                    </g>
+                </svg>
+-->
+                <img id="left-eye" src="countdown-crop-loop.gif" alt="" class="clip-circle">
+                <img id="right-eye" src="countdown-crop-loop.gif" alt="" class="clip-circle">
+                <h1>The State of Diversity in Film</h1>
+                <h2>A closer look at 10 top films from 2016</h2>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="270" height="322" viewBox="0 0 270 322" id="whole-head">
+                <style>
+                    .a {
+                        fill: none;
+                    }
+                    
+                    .b {
+                        fill: #F6A623;
+                    }
+                    
+                    .c {
+                        fill: #D0011B;
+                    }
+                    
+                    .d {
+                        fill: #EEE9A4;
+                    }
+                    
+                    .e {
+                        fill: #E5BF7F;
+                    }
+                    
+                    .f {
+                        fill: #656A71;
+                    }
+                    
+                    .g {
+                        fill: #DCB87D;
+                    }
+                </style>
+                <title class="undefined">
+                    heads
+                </title>
+                <desc class="undefined">
+                    Created with Sketch.
+                </desc>
+                <g id="Page-1" class="a">
+                    <g id="heads" class="undefined">
+                        <path d="M102.5 303.3C143.8 303.3 178.6 264.6 200.3 234.3 222.1 203.9 200.3 186.1 200.3 161.9 200.3 137 214.3 83.2 200.3 64.3 186.4 45.5 141 23 100.4 23 60.4 23 18.3 44.7 5 76.5 -8.2 108.3 9.4 136.4 9.4 161.9 9.4 186.3-8.4 215.6 5 234.3 26.8 264.4 61.4 303.3 102.5 303.3Z" id="orande-head" class="b" />
+                        <path d="M162.5 280.3C203.8 280.3 238.6 241.6 260.3 211.3 282.1 180.9 260.3 163.1 260.3 138.9 260.3 114 274.3 60.2 260.3 41.3 246.4 22.5 201 0 160.4 0 120.4 0 78.3 21.7 65 53.5 51.8 85.3 69.4 113.4 69.4 138.9 69.4 163.3 51.6 192.6 65 211.3 86.8 241.4 121.4 280.3 162.5 280.3Z" id="red-head" class="c" />
+                        <path d="M162.5 321.3C203.8 321.3 238.6 282.6 260.3 252.3 282.1 221.9 260.3 204.1 260.3 179.9 260.3 155 274.3 101.2 260.3 82.3 246.4 63.5 201 41 160.4 41 120.4 41 78.3 62.7 65 94.5 51.8 126.3 69.4 154.4 69.4 179.9 69.4 204.3 51.6 233.6 65 252.3 86.8 282.4 121.4 321.3 162.5 321.3Z" id="yellow-head" class="d" />
+                        <path d="M134 303.7C175.3 303.7 210.1 264.9 231.9 234.6 253.6 204.3 231.9 186.4 231.9 162.2 231.9 137.4 245.8 83.5 231.9 64.7 217.9 45.8 172.5 23.3 131.9 23.3 91.9 23.3 49.8 45 36.5 76.8 23.3 108.6 40.9 136.7 40.9 162.2 40.9 186.6 23.1 215.9 36.5 234.6 58.3 264.7 92.9 303.7 134 303.7Z" id="beige-head" class="e" />
+                        <path d="M88 239.5C88 239.5 120.2 238 135.8 238 151.4 238 182.3 239.5 182.3 239.5 182.3 239.5 148.9 245.6 135.8 245.6 122.6 245.6 88 239.5 88 239.5Z" id="mouth" class="f" />
+                        <g id="nose" class="undefined">
+                            <path d="M137 213C144.4 213 150.1 209.9 155 207.1 159.9 204.3 162.8 203.5 162.8 199.9 162.8 194 157.9 187.4 149.4 185.2 146.5 184.4 140.4 180.5 137 180.5 135.4 180.5 133.1 181.4 130.8 182.3 128.1 183.5 125.5 184.8 123.9 185.2 115.5 187.4 110.8 195.3 110.8 201.3 110.8 204.4 115.4 206.6 118.6 208.4 121.8 210.3 128.9 213 137 213Z" id="nose-shape" class="g" />
+                            <path d="M1.2 2C-0.2 2-1.1 1.3-2.6 0.6 -4-0.1-5.2 0-5.2-0.8 -5.2-1.7-2-2-0.6-2 0.8-2 5.2-2.2 5.2-0.8 5.2 1.4 3.4 2 1.2 2Z" id="left-nostril" transform="translate(110 180)translate(14.792484 29.178156)scale(-1 1)" class="f" />
+                            <path d="M147.6 211.2C148.9 211.2 149.9 210.4 151.4 209.7 152.8 209.1 154 209.2 154 208.4 154 207.5 150.8 207.2 149.4 207.2 148 207.2 143.6 207 143.6 208.4 143.6 210.6 145.4 211.2 147.6 211.2Z" id="right-nostril" class="f" />
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <a href="#page2">
+            <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="68" height="39" viewBox="0 0 68 39" version="1">
+                <title> Path 4</title>
+                <desc> Created with Sketch.</desc>
+                <g style="fill-rule:evenodd;fill:none;stroke-linecap:round">
+                    <g style="stroke-width:5;stroke:#979797">
+                        <polyline transform="translate(-371 -140)translate(405.050414 159.007763)scale(1 -1)translate(-405.050414 -159.007763)" points="374 174.5 405 143.5 436.1 174.6" />
+                    </g>
+                </g>
+            </svg>
+        </a>
+    </div>
+    <div id="page2">
+        <h3>The Story</h3>
+        <div class="movie-text"><span>The 2016 films honored at the 2017 Oscars made it the most diverse Oscars yet. But should Hollywood be patting themselves on the back just yet? We wanted to know: how diverse are these top films really, both in terms of casting and production?</span>
+        </div>
+        <img src="faces-div.png" alt="" id="viz-heads">
+    </div>
+    <div id="page3">
+        <h3>The Movies</h3>
+
+
+        <div class="movie-text"><span>We took a closer look at 10 movies released in 2016 for their box office gross, critical acclaim, and variety of genres—from indie darlings to superhero franchises.</span>
+        </div>
+
+        <ul class="flex-container">
+            <a href="http://www.imdb.com/title/tt3741834/">
+                <li class="flex-item"><img class="movie" src="lion.png" alt=""><span class="text-test">A biographical indie film in which a five-year-old Indian boy gets lost on the streets of Calcutta, is adopted by an Australian couple and sets out to find his lost family 25 years later. Lion was a critical hit nominated for six Oscars.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt3783958/">
+                <li class="flex-item"><img class="movie" src="lala.png" alt=""><span class="text-test">A 2016 American romantic musical comedy-drama film about a musician and an aspiring actress who meet and fall in love in Los Angeles. La La Land was nominated for 14 Oscars and won six.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt1619029/">
+                <li class="flex-item"><img class="movie" src="jackie.png" alt=""><span class="text-test">A biographical drama telling the story of Jackie Onassis after the 1963 assassination of her husband John F. Kennedy released by Fox Searchlight Pictures. Jackie was nominated for three Oscars.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt4034228/?ref_=nv_sr_1">
+                <li class="flex-item"><img class="movie" src="manchester.png" alt=""><span class="text-test">An American indie drama which follows a man who looks after his teenage nephew after his brother dies. Manchester by the Sea was nominated for six Oscars and won two.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt4975722/?ref_=nv_sr_1">
+                <li class="flex-item"><img class="movie" src="moonlight.png" alt=""><span class="text-test">An American indie coming-of-age drama following a man's exploration of sexuality & identity in three stages of his life. Moonlight became the first film with an all-black cast and first LGBT film to win the Best Picture Oscar.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt4846340/?ref_=nv_sr_1">
+                <li class="flex-item"><img class="movie" src="hidden.png" alt=""><span class="text-test">A biographical drama about African American female mathematicians who worked at the National Aeronautics and Space Administration (NASA) during the Space Race. It was nominated for three Oscars.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt3748528/?ref_=nv_sr_2">
+                <li class="flex-item"><img class="movie" src="star%20wars.png" alt=""><span class="text-test">An American epic space opera film from Lucasfilm and Disney Studios Motion, set immediately before the events of the original Star Wars film. It was nominated for two Oscars.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt2543164/?ref_=nv_sr_5">
+                <li class="flex-item"><img class="movie" src="arrivals.png" alt=""><span class="text-test">An American sci-fi film where a linguistics professor is tasked with interpreting the language of alien visitors after twelve mysterious spacecraft appear around the world. It won one Oscar and was nominated for seven.</span></li>
+            </a>
+            <a href="http://www.imdb.com/title/tt3783958/">
+                <li class="flex-item"><img class="movie" src="bvs.png" alt=""><span class="text-test">An 2016 American superhero film featuring the DC Comics characters Batman and Superman, distributed by Warner Bros. Pictures.</span></li>
+                <a href="http://www.imdb.com/title/tt3783958/">
+                    <li class="flex-item"><img class="movie" src="cptn-amer.png" alt=""><span class="text-test">An American superhero film based on the Marvel Comics character Captain America, produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures.</span></li>
+                </a>
+        </ul>
+
+
+    </div>
+    <div id="page4">
+        <h3>The Method</h3>
+
+        <div class="movie-text">
+            <h5>Representation Onscreen</h5>
+            <span>We combed through the scripts and started counting up the number of words each character spoke. We made note of the character’s gender, race, and sexual orientation, if available.</span>
+            <h5>Representation Offscreen</h5>
+            <div class="gif-col">
+                <img class="damon-left" src="damon-diversity-3.gif" alt="">
+                <span class="right-flex">We also gathered filmmaker data for each of the movies from IMDb and other sources of information about the film. We looked specifically at the gender, race, and sexual orientation of the films producers, directors, and writers.
+            </span>
+            </div>
+            <p>Could Matt Damon be right? (Spoiler: no.)</p>
+            <br>
+            <h3>How much representation is there? Explore.</h3>
+            <a href="#everything">
+                <div class="arrow-wrapper">
+                    <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" width="68" height="39" viewBox="0 0 68 39" version="1">
+                        <title> Path 4</title>
+                        <desc> Created with Sketch.</desc>
+                        <g style="fill-rule:evenodd;fill:none;stroke-linecap:round">
+                            <g style="stroke-width:5;stroke:#979797">
+                                <polyline transform="translate(-371 -140)translate(405.050414 159.007763)scale(1 -1)translate(-405.050414 -159.007763)" points="374 174.5 405 143.5 436.1 174.6" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+    </div>
+
+
+
+    </div>
+    <div id="everything">
+        <div>
+            <div class="intro">
+                <h3>Movie Diversity Visualization</h3>
+                <p class="description">Below is a chart visualizing the diversity of 10 popular movies of 2016. Some were celebrated for their perceived diversity, but upon further investigation we discovered that representation may not be as diverse as it seems.</p>
+
+                <div class="legend">
+                    <div class="legendContainer">
+
+
+                        <!--<div class = "legendStuff">  
 <p style="font-weight: bold">Gender:</p>
 </div>-->
 
-<div class = "legendStuff" id = "femaleLegend">  
-<div class = "legendGender"></div>
-<p id="fL">Female</p>
-</div>
-    
-<div class = "legendStuff" id = "maleLegend">  
-<div class = "legendGender"></div>
-<p id="mL">Male</p>
-</div>
-    
+                        <div class="legendStuff" id="femaleLegend">
+                            <div class="legendGender"></div>
+                            <p id="fL">Female</p>
+                        </div>
 
-            
-<!--<div class = "legendStuff">  
+                        <div class="legendStuff" id="maleLegend">
+                            <div class="legendGender"></div>
+                            <p id="mL">Male</p>
+                        </div>
+
+
+
+                        <!--<div class = "legendStuff">  
 <p style="font-weight: bold">Race:</p>
 </div>-->
-            
-            
-<div class = "legendStuff">  
-<div class = "legendItem" style = "background-color:#bbccee;"></div>
-<p>White</p>
-</div>
-            
-<div class = "legendStuff">  
-<div class = "legendItem" style = "background-color:#332288;"></div>
-<p>Black</p>
-</div>
-    
-<div class = "legendStuff">  
-<div class = "legendItem" style = "background-color:#44AA99;"></div>
-<p>Latino</p>
-</div>
 
-<div class = "legendStuff">  
-<div class = "legendItem" style = "background-color:#ddcc77;"></div>
-<p>Indian</p>
-</div>
 
-<div class = "legendStuff">  
-<div class = "legendItem" style = "background-color:#882255;"></div>
-<p>Asian</p>
-</div>
+                        <div class="legendStuff">
+                            <div class="legendItem" style="background-color:#bbccee;"></div>
+                            <p>White</p>
+                        </div>
 
-    
-    </div>
-    </div>
+                        <div class="legendStuff">
+                            <div class="legendItem" style="background-color:#332288;"></div>
+                            <p>Black</p>
+                        </div>
+
+                        <div class="legendStuff">
+                            <div class="legendItem" style="background-color:#44AA99;"></div>
+                            <p>Latino</p>
+                        </div>
+
+                        <div class="legendStuff">
+                            <div class="legendItem" style="background-color:#ddcc77;"></div>
+                            <p>Indian</p>
+                        </div>
+
+                        <div class="legendStuff">
+                            <div class="legendItem" style="background-color:#882255;"></div>
+                            <p>Asian</p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+        <!-- filter buttons-->
+        <div>
+            <h4>Filter Buttons</h4>
+            <div class="filterContainer">
+
+                <div class=b utton>
+                    <div class="filterButton" id="female" onclick="switchButton('female')"></div>
+                    <p>Female</p>
+                    <div></div>
+                </div>
+
+                <div class=b utton>
+                    <div class="filterButton" id="male" onclick="switchButton('male')"></div>
+                    <p>Male</p>
+                    <div></div>
+                </div>
+                <div class="buffer"></div>
+                <div class=b utton>
+                    <div class="filterButton" id="white" onclick="switchButton('white')"></div>
+                    <p>White</p>
+                </div>
+
+                <div class=b utton>
+                    <div class="filterButton" id="black" onclick="switchButton('black')"></div>
+                    <p>Black</p>
+                </div>
+
+                <div class=b utton>
+                    <div class="filterButton" id="latino" onclick="switchButton('latino')"></div>
+                    <p>Latino</p>
+                </div>
+
+                <div class=b utton>
+                    <div class="filterButton" id="indian" onclick="switchButton('indian')"></div>
+                    <p>Indian</p>
+                </div>
+
+                <div class=b utton>
+                    <div class="filterButton" id="asian" onclick="switchButton('asian')"></div>
+                    <p>Asian</p>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
- 
-<!-- filter buttons-->
-    <div>
-<h4>Filter Buttons</h4>
-<div class = "filterContainer">
 
-<div class = button>  
-<div class = "filterButton" id = "female" onclick = "switchButton('female')"></div>
-<p>Female</p>
-    <div></div>
-</div>
-
-<div class = button>  
-<div class = "filterButton" id = "male" onclick = "switchButton('male')"></div>
-<p>Male</p>
-    <div></div>
-</div>
-   <div class = "buffer"></div> 
-<div class = button>  
-<div class = "filterButton" id = "white" onclick = "switchButton('white')"></div>
-<p>White</p>
-</div>
-    
-<div class = button>  
-<div class = "filterButton" id = "black" onclick = "switchButton('black')"></div>
-<p>Black</p>
-</div>
-    
-<div class = button>  
-<div class = "filterButton" id = "latino" onclick = "switchButton('latino')"></div>
-<p>Latino</p>
-</div>
-    
-<div class = button>  
-<div class = "filterButton" id = "indian" onclick = "switchButton('indian')"></div>
-<p>Indian</p>
-</div>
-    
-<div class = button>  
-<div class = "filterButton" id = "asian" onclick = "switchButton('asian')"></div>
-<p>Asian</p>
-</div>
-    
-    </div></div>
-
-</div>
-
-    
-<!-- tooltip template -->
+    <!-- tooltip template -->
     <div id="tooltip">
         <div class="title char"></div>
         <div class="info movie"></div>
@@ -134,6 +305,13 @@
         <div class="info race"></div>
         <div class="info orientation"></div>
     </div>
+<<<<<<< HEAD
 <script type="application/javascript" src="movieVis.js"></script> 
+=======
+    
+
+
+>>>>>>> story-final
 </body>
+
 </html>
